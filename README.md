@@ -36,7 +36,6 @@ Bacterial genome assembly was performed via SPAdes v3.13.1 (with option --carefu
 # NB sample
 spades.py --careful -o ${working_dir}/NB_spades -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz
 ```
-
 ```{bash}
 # NS sample
 spades.py --careful -o ${working_dir}/NS_spades -1 ${path_to_reads}/ARyb_NS2_S53_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NS2_S53_R2_001.fastq.gz 
@@ -61,7 +60,7 @@ gunzip ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna.gz
 gunzip ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna.gz
 
 # Running QUAST: NS & NB assemblies vs GCA_003546975.1 (dated on 2018):
-quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna -g ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2018
+quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna -g ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2018
 
 # Running QUAST: NS & NB assemblies vs  GCA_000714595.1 (dated on 2014):
 quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna -g ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2014
@@ -71,51 +70,84 @@ quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffol
 ##### 4.1. Binning
 Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. First, NB sample reads were mapped to the SPAdes-derived contigs via bowtie2 v2.2.1. Resulting alignment was modified using samtools 1.11. 
 ```{bash} 
-# indexing contigs
+# Indexing contigs
 bowtie2-build ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NBspades_contigs
 
-# mapping
+# Mapping
 bowtie2 -x ${working_dir}/NBspades_contigs -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz -S ${working_dir}/NB3_reads_contigs.sam
 
-# sam to bam conversion
+# Sam to bam conversion
 samtools view -S ${working_dir}/NB3_reads_contigs.sam -b -o ${working_dir}/NB3_reads_contigs.bam
 
-# samtools sort
+# Samtools sort
 samtools sort ${working_dir}/NB3_reads_contigs.bam -o ${working_dir}/NB3_reads_contigs.sorted.bam
 
-# samtools index
+# Samtools index
 samtools index ${working_dir}/NB3_reads_contigs.sorted.bam
 ```
 
 Binning:
 ```{bash}
-# rename a copy of indexed bam file for bining
+# Rename a copy of indexed bam file for bining
 cp ${working_dir}/NB3_reads_contigs.sorted.bai ${working_dir}/NB3_reads_contigs.sorted.index.bam
 
-# create a folder for concoct output
+# Create a folder for concoct output
 mkdir ${working_dir}/concoct_output
 
-# cut up contigs fasta file in non-overlapping (-o 0) parts of length 10K (chunk size is 10K: -c 10000), the last contig part would be between 10K and 20K long (--merge_last); contig parts would be specified in the BED file (-b contigs_10K.bed):
+# Cut up contigs fasta file in non-overlapping (-o 0) parts of length 10K (chunk size is 10K: -c 10000), the last contig part would be between 10K and 20K long (--merge_last); contig parts would be specified in the BED file (-b contigs_10K.bed):
 cut_up_fasta.py ${working_dir}/NB_spades/contigs.fasta -c 10000 -o 0 --merge_last -b ${working_dir}/concoct_output/contigs_10K.bed > ${working_dir}/concoct_output/contigs_10K.fa
 
-# create coverage table based on  data on contigs parts in BED format and sorted indexed alignment file of reads to contigs:
-concoct_coverage_table.py ${working_dir}/concoct_output/contigs_10K.bed \ 
-${working_dir}/NB3_reads_contigs.sorted.index.bam > ${working_dir}/concoct_output/coverage_table.tsv 
+# Create coverage table based on  data on contigs parts in BED format and sorted indexed alignment file of reads to contigs:
+concoct_coverage_table.py ${working_dir}/concoct_output/contigs_10K.bed ${working_dir}/NB3_reads_contigs.sorted.index.bam > ${working_dir}/concoct_output/coverage_table.tsv 
 
-# perform unsupervised binning of contigs
+# Perform unsupervised binning of contigs
 concoct --composition_file ${working_dir}/concoct_output/contigs_10K.fa --coverage_file ${working_dir}/concoct_output/coverage_table.tsv -b ${working_dir}/concoct_output/
 
 # Merge subcontig clustering (clustering_gt1000.csv obtained by running concoct command) into original contig clustering (clustering_merged.csv):
 merge_cutup_clustering.py ${working_dir}/concoct_output/clustering_gt1000.csv > ${working_dir}/concoct_output/clustering_merged.csv
 
-# create a folder for bins:
+# Create a folder for bins:
 mkdir ${working_dir}/concoct_output/NB_bins
 
-# extract a fasta file for each cluster specified by concoct
+# Extract a fasta file for each cluster specified by concoct
 extract_fasta_bins.py ${working_dir}/NB_spades/contigs.fasta ${working_dir}/concoct_output/clustering_merged.csv --output_path ${working_dir}/concoct_output/NB_bins
 ```
 ##### 4.2. Bins evaluation using single copy genes
+NB sample bins were assessed for completeness and contamination using CheckM v1.1.3. 
 
+```{bash}
+# Create a directory for CheckM output:
+mkdir ${working_dir}/CheckM_output_NB
+
+# Create a directory for CheckM database:
+mkdir ${working_dir}/CheckM_database
+
+# Download CheckM database files
+wget -P ${working_dir}/CheckM_database https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+
+# Decompressing
+tar -xzvf ${working_dir}/CheckM_database/checkm_data_2015_01_16.tar.gz
+
+# Set the directory where CheckM database would be located
+checkm data setRoot ${working_dir}/CheckM_database
+
+# Run workflow using lineage-specific marker sets (see https://github.com/Ecogenomics/CheckM/wiki/Workflows#lineage-specific-workflow)
+checkm lineage_wf -x fa ${working_dir}/concoct_output/NB_bins ${working_dir}/CheckM_output_NB
+```
+
+To evaluate completeness and contamination of NS sample, the following commands were used (memory consuming process):
+```{bash}
+# Create a directory for CheckM output:
+mkdir ${working_dir}/CheckM_output_NS
+
+# Prepare a bin folder:
+mkdir ${working_dir}/CheckM_output_NS/NS_bins
+cp ${working_dir}/NB_spades/contigs.fasta ${working_dir}/CheckM_output_NS/NS_bins
+
+#  Run workflow using lineage-specific marker sets
+checkm lineage_wf ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_output_NS
+```
+Summary on bins evaluation might be found at **Results/CheckM/** for both samples. 
 #### 5. Annotation (NS)
 ##### 5.1. Prokka
 ##### 5.2. PGAP
