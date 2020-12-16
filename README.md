@@ -18,6 +18,9 @@ To ,,, we objectives:
 ### Workflow
 #### 1. Quality assessment of read ?? (NS & NB)
 fastqc
+```bash
+ls
+```
 #### 2. *De novo* assembly (NS & NB)
 spades
 #### 3. Assembly statistics (NS & NB)
