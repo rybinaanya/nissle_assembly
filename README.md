@@ -18,6 +18,7 @@ In this study, the following programs were used:
 * SPAdes v3.13.1 
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
+* bowtie2 v2.2.1
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
@@ -68,11 +69,10 @@ quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffol
 
 #### 4. Contamination and completeness assessment (NS & NB)
 ##### 4.1. Binning
-Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. Bowtiew
+Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. NB sample reads were mapped to the SPAdes-derived contigs via bowtie2 v2.2.1. Resulting alignment was modified using samtools 1.11. 
 
 ```{bash}
- # mapping  - bowtie2
-
+ # mapping 
 mv contigs.fasta NB3spades_contigs.fasta
 path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_spadesContig
 path_reads=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/2020_08_04/2020_08_04/Sk_student_AnnaRybina_for_summerschool
