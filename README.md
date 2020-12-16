@@ -12,10 +12,11 @@ In this work, we aimed to perform decontamination and *de novo* assembly of two 
 
 To ,,, we objectives:
 .... 
-### Required programs and - check prokka and others - про комп
+### Required programs used in the study and - check prokka and others - про комп
+In this study, the following programs were used:
 FastQC v0.11.9
 SPAdes v3.13.1
-
+QUAST v5.1.0rc1
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
@@ -29,17 +30,49 @@ FastQC report can be found  here **Results/FastQC/**. There was no need to subje
 #### 2. *De novo* assembly (NS & NB)
 Bacterial genome assembly was performed via SPAdes v3.13.1 (with option --careful):
 
-* NB
 ```{bash}
+# NB sample
 spades.py --careful -o ${working_dir}/NB_spades -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz
 ```
-* NS
+
 ```{bash}
+# NS sample
 spades.py --careful -o ${working_dir}/NS_spades -1 ${path_to_reads}/ARyb_NS2_S53_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NS2_S53_R2_001.fastq.gz 
 ```
 
 #### 3. Assembly statistics (NS & NB)
-quast
+Statistics on resulting contigs and scaffolds for both samples was obtained using QUAST v5.1.0rc1 (as a reference genome file wa specified either genome of `E. coli` Nissledefault parameters). Each assembly was compared to complete genomes of the `E. coli` Nissle 1917 available under GenBank assembly accession either GCA_003546975.1 (dated on 2018) or GCA_000714595.1 (dated on 2014). 
+
+```{bash}
+# Download gff files
+wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/546/975/GCA_003546975.1_ASM354697v1/GCA_003546975.1_ASM354697v1_genomic.gff.gz 
+wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/714/595/GCA_000714595.1_ASM71459v1/GCA_000714595.1_ASM71459v1_genomic.gff.gz
+
+# Running QUAST: NS & NB assemblies vs GCA_003546975.1 (dated on 2018)
+
+# Download gff files
+#!/bin/bash
+#PBS -d .
+#PBS -l walltime=100:00:00,mem=4gb
+path_ref=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_Nissle2018/GCA_003546975.1_ASM354697v1_genomic.fna
+path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018
+path_g=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018/GCA_003546975.1_ASM354697v1_genomic.gff
+path_contigs=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018
+quast.py ${path_contigs}/NScontigs.fasta ${path_contigs}/NSscaffolds.fasta ${path_contigs}/NBcontigs.fasta ${path_contigs}/NBscaffolds.fasta -r ${path_ref} -
+
+
+# Running QUAST: NS & NB assemblies vs  GCA_000714595.1 (dated on 2014)
+#!/bin/bash
+#!/bin/bash
+#PBS -d .
+#PBS -l walltime=100:00:00,mem=4gb
+path_ref=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014/GCA_000714595.1_ASM71459v1_genomic.fna
+path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014
+path_g=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014/GCA_000714595.1_ASM71459v1_genomic.gff
+path_contigs=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014
+quast.py ${path_contigs}/NScontigs.fasta ${path_contigs}/NSscaffolds.fasta ${path_contigs}/NBcontigs.fasta ${path_contigs}/NBscaffolds.fasta -r ${path_ref} -g ${path_g} -o ${path_out}/quast_output_NS_NB_Nissle2018
+
+```
 
 #### 4. Contamination and completeness assessment (NS & NB)
 ##### 4.1. Binning
