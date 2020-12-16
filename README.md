@@ -41,37 +41,28 @@ spades.py --careful -o ${working_dir}/NS_spades -1 ${path_to_reads}/ARyb_NS2_S53
 ```
 
 #### 3. Assembly statistics (NS & NB)
-Statistics on resulting contigs and scaffolds for both samples was obtained using QUAST v5.1.0rc1 (as a reference genome file wa specified either genome of `E. coli` Nissledefault parameters). Each assembly was compared to complete genomes of the `E. coli` Nissle 1917 available under GenBank assembly accession either GCA_003546975.1 (dated on 2018) or GCA_000714595.1 (dated on 2014). 
+Statistics on resulting contigs and scaffolds for both samples was obtained using QUAST v5.1.0rc1. Each assembly was compared to complete genome of the *E. coli* Nissle 1917 available under GenBank assembly accession either GCA_003546975.1 (dated on 2018) or GCA_000714595.1 (dated on 2014).  Both QUAST output are located at **Results/QUAST/**
 
 ```{bash}
-# Download gff files
+# Download gff files to the working directory ${working_dir}:
 wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/546/975/GCA_003546975.1_ASM354697v1/GCA_003546975.1_ASM354697v1_genomic.gff.gz 
 wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/714/595/GCA_000714595.1_ASM71459v1/GCA_000714595.1_ASM71459v1_genomic.gff.gz
 
-# Running QUAST: NS & NB assemblies vs GCA_003546975.1 (dated on 2018)
+# Download genome fasta files to the working directory ${working_dir}:
+wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/546/975/GCA_003546975.1_ASM354697v1/GCA_003546975.1_ASM354697v1_genomic.fna.gz 
+wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/714/595/GCA_000714595.1_ASM71459v1/GCA_000714595.1_ASM71459v1_genomic.fna.gz
 
-# Download gff files
-#!/bin/bash
-#PBS -d .
-#PBS -l walltime=100:00:00,mem=4gb
-path_ref=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_Nissle2018/GCA_003546975.1_ASM354697v1_genomic.fna
-path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018
-path_g=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018/GCA_003546975.1_ASM354697v1_genomic.gff
-path_contigs=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2018
-quast.py ${path_contigs}/NScontigs.fasta ${path_contigs}/NSscaffolds.fasta ${path_contigs}/NBcontigs.fasta ${path_contigs}/NBscaffolds.fasta -r ${path_ref} -
+# Decompressing:
+gunzip ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff.gz
+gunzip ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.gff.gz 
+gunzip ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna.gz
+gunzip ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna.gz
 
+# Running QUAST: NS & NB assemblies vs GCA_003546975.1 (dated on 2018):
+quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna -g ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2018
 
-# Running QUAST: NS & NB assemblies vs  GCA_000714595.1 (dated on 2014)
-#!/bin/bash
-#!/bin/bash
-#PBS -d .
-#PBS -l walltime=100:00:00,mem=4gb
-path_ref=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014/GCA_000714595.1_ASM71459v1_genomic.fna
-path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014
-path_g=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014/GCA_000714595.1_ASM71459v1_genomic.gff
-path_contigs=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/quast_NB_NS_Nissle2014
-quast.py ${path_contigs}/NScontigs.fasta ${path_contigs}/NSscaffolds.fasta ${path_contigs}/NBcontigs.fasta ${path_contigs}/NBscaffolds.fasta -r ${path_ref} -g ${path_g} -o ${path_out}/quast_output_NS_NB_Nissle2018
-
+# Running QUAST: NS & NB assemblies vs  GCA_000714595.1 (dated on 2014):
+quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna -g ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2014
 ```
 
 #### 4. Contamination and completeness assessment (NS & NB)
