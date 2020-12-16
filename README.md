@@ -150,6 +150,8 @@ checkm lineage_wf ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_
 Summary on bins evaluation might be found at **Results/CheckM/** for both samples. 
 #### 5. Annotation (NS)
 ##### 5.1. Prokka
+
+First, prepare output directory and additional input file:
 ```{bash}
 # Create a directory for prokka output:
 mkdir ${working_dir}/prokka_output_NS
@@ -157,9 +159,10 @@ mkdir ${working_dir}/prokka_output_NS
 # Download and decompress last modified curated annotation of *E. coli* Nissle 1917
 wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/546/975/GCF_003546975.1_ASM354697v1/GCF_003546975.1_ASM354697v1_genomic.gbff.gz
 gunzip ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff.gz
+```
 
-# Run prokka: force overwriting existing output folder (--force), specify genus and species, use filename output prefix "NS" (--prefix NS), add 'gene' features for each 'CDS' feature (--addgenes), use "Nissle" as locus tag prefix (--locustag Nissle), use genus-specific BLAST databases (--usegenus), search for ncRNAs with Infernal+Rfam (--rfam), specify Gram negative (--gram neg), use RefSeq gbff file to first annotate from (--proteins):
-
+Run prokka: force overwriting existing output folder (--force), specify genus and species, use filename output prefix "NS" (--prefix NS), add 'gene' features for each 'CDS' feature (--addgenes), use "Nissle" as locus tag prefix (--locustag Nissle), use genus-specific BLAST databases (--usegenus), search for ncRNAs with Infernal+Rfam (--rfam), specify Gram negative (--gram neg), use RefSeq gbff file to first annotate from (--proteins):
+```{bash}
 prokka --outdir ${working_dir}/prokka_output_NS --force --genus Escherichia --species coli --strain Nissle --prefix NS --addgenes --locustag Nissle --kingdom Bacteria --gcode 11 --usegenus --rfam --gram neg --proteins ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff.gz ${working_dir}/NS_spades/scaffolds.fasta
 ```
 **?? Можно ли выкладывать аннотацию**
