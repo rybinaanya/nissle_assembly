@@ -27,14 +27,17 @@ fastqc -o ${working_dir}/fastqc_output ${path_to_reads}/*.fastq.gz
 FastQC report can be found  here **Results/FastQC/**. There was no need to subject reads to trimming.
 
 #### 2. *De novo* assembly (NS & NB)
-Bacterial genome assembly was performed via SPAdes v3.13.1 
+Bacterial genome assembly was performed via SPAdes v3.13.1 (with option --careful):
 
 * NB
-```
-spades.py --careful -o path_to_output -1 path_to_reads/ARyb_NB3_S54_R1_001.fastq.gz -2 path_to_reads/ARyb_NB3_S54_R2_001.fastq.gz
+```{bash}
+spades.py --careful -o ${working_dir}/NB_spades -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz
 ```
 * NS
-```{bash }spades.py --careful -o path_to_output -1 path_to_reads/ARyb_NS2_S53_R1_001.fastq.gz -2 path_to_reads/ARyb_NS2_S53_R2_001.fastq.gz ```
+```{bash}
+spades.py --careful -o ${working_dir}/NS_spades -1 ${path_to_reads}/ARyb_NS2_S53_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NS2_S53_R2_001.fastq.gz 
+```
+
 #### 3. Assembly statistics (NS & NB)
 quast
 
