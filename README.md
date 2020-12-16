@@ -14,10 +14,10 @@ To ,,, we objectives:
 .... 
 ### Required programs used in the study and - check prokka and others - про комп
 In this study, the following programs were used:
-FastQC v0.11.9 \\
-SPAdes v3.13.1 \\
-QUAST v5.1.0rc1 \\
-CONCOCT v1.1.0 \\
+* FastQC v0.11.9
+* SPAdes v3.13.1 
+* QUAST v5.1.0rc1
+* CONCOCT v1.1.0
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
