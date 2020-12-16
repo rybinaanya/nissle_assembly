@@ -18,7 +18,7 @@ In this study, the following programs were used:
 * SPAdes v3.13.1 
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
-* bowtie2 v2.2.1
+* Bowtie2 v2.2.1
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
@@ -64,34 +64,57 @@ gunzip ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna.gz
 quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna -g ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2018
 
 # Running QUAST: NS & NB assemblies vs  GCA_000714595.1 (dated on 2014):
-quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna -g ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2014
+quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna -g ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2014
 ```
 
 #### 4. Contamination and completeness assessment (NS & NB)
 ##### 4.1. Binning
-Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. NB sample reads were mapped to the SPAdes-derived contigs via bowtie2 v2.2.1. Resulting alignment was modified using samtools 1.11. 
+Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. First, NB sample reads were mapped to the SPAdes-derived contigs via bowtie2 v2.2.1. Resulting alignment was modified using samtools 1.11. 
+```{bash} 
+# indexing contigs
+bowtie2-build ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NBspades_contigs
 
-```{bash}
- # mapping 
-mv contigs.fasta NB3spades_contigs.fasta
-path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_spadesContig
-path_reads=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/2020_08_04/2020_08_04/Sk_student_AnnaRybina_for_summerschool
+# mapping
+bowtie2 -x ${working_dir}/NBspades_contigs -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz -S ${working_dir}/NB3_reads_contigs.sam
 
-bowtie2-build path_out/NB3spades_contigs.fasta path_out/NB3spades_contigs
-bowtie2 -x path_out/NB3spades_contigs -1 path_reads/ARyb_NB3_S54_R1_001.fastq.gz -2 path_reads/ARyb_NB3_S54_R2_001.fastq.gz -S path_out/NB3_spades_contig.sam
-# samtools  - sam to bam conversion
-
-samtools view -S NB3_spades_contig.sam -b -o NB3_spades_contig.bam
+# sam to bam conversion
+samtools view -S ${working_dir}/NB3_reads_contigs.sam -b -o ${working_dir}/NB3_reads_contigs.bam
 
 # samtools sort
-samtools sort NB3_spades_contig.bam -o NB3_spades_contig.sorted.bam
+samtools sort ${working_dir}/NB3_reads_contigs.bam -o ${working_dir}/NB3_reads_contigs.sorted.bam
 
 # samtools index
-samtools index NB3_spades_contig.sorted.bam 
-
+samtools index ${working_dir}/NB3_reads_contigs.sorted.bam
 ```
 
-##### 4.2. CheckM - как назвать ?
+Binning:
+```{bash}
+# rename a copy of indexed bam file for bining
+cp ${working_dir}/NB3_reads_contigs.sorted.bai ${working_dir}/NB3_reads_contigs.sorted.index.bam
+
+# create a folder for concoct output
+mkdir ${working_dir}/concoct_output
+
+# cut up contigs fasta file in non-overlapping (-o 0) parts of length 10K (chunk size is 10K: -c 10000), the last contig part would be between 10K and 20K long (--merge_last); contig parts would be specified in the BED file (-b contigs_10K.bed):
+cut_up_fasta.py ${working_dir}/NB_spades/contigs.fasta -c 10000 -o 0 --merge_last -b ${working_dir}/concoct_output/contigs_10K.bed > ${working_dir}/concoct_output/contigs_10K.fa
+
+# create coverage table based on  data on contigs parts in BED format and sorted indexed alignment file of reads to contigs:
+concoct_coverage_table.py ${working_dir}/concoct_output/contigs_10K.bed ${working_dir}/NB3_reads_contigs.sorted.index.bam > ${working_dir}/concoct_output/coverage_table.tsv 
+
+# perform unsupervised binning of contigs
+concoct --composition_file ${working_dir}/concoct_output/contigs_10K.fa --coverage_file ${working_dir}/concoct_output/coverage_table.tsv -b ${working_dir}/concoct_output/
+
+# Merge subcontig clustering (clustering_gt1000.csv obtained by running concoct command) into original contig clustering (clustering_merged.csv):
+merge_cutup_clustering.py ${working_dir}/concoct_output/clustering_gt1000.csv > ${working_dir}/concoct_output/clustering_merged.csv
+
+# create a folder for bins:
+mkdir ${working_dir}/concoct_output/NB_bins
+
+# extract a fasta file for each cluster specified by concoct
+extract_fasta_bins.py ${working_dir}/NB_spades/contigs.fasta ${working_dir}/concoct_output/clustering_merged.csv --output_path ${working_dir}/concoct_output/NB_bins
+```
+##### 4.2. Bins evaluation using single copy genes
+
 #### 5. Annotation (NS)
 ##### 5.1. Prokka
 ##### 5.2. PGAP
