@@ -1,7 +1,7 @@
 ## Bacterial genome assembly and decontamination
 
 *Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020. **something about files located here**
-
+**Results/** - contains results of FastQC analysis, assembly statistics (QUAST output),  completeness and contamination assessment (CheckM report), 
 ### Background 
 Maintaining balanced gut microbiota was shown to be crucial for human health. Probiotics such as *Escgerichia coli* Nissle 1917 could recover beneficial functions in gut microbial communities and prevent it from being populated with pathogenic bacteria. **LINK!!** 
 
@@ -16,13 +16,16 @@ To ,,, we objectives:
 
 
 ### Workflow
-#### 1. Quality assessment of read ?? (NS & NB)
-fastqc
-```bash
-ls
+#### 1. Quality assessment of raw sequencing data (NS & NB)
+
+Quality of reads was analyzed using FastQC v0.11.9 with default parameters. Variable ${working_dir} specifies the directory where all the output of data analysis would be saved (e.g. /home/rybina/Nissle_project). Variable ${path_to_reads} is the directory where raw reads in fastq format are located (e.g. /home/rybina/Nissle_project/Reads_data).  
+```{bash}
+fastqc -o ${working_dir}/fastqc_output ${path_to_reads}/*.fastq.gz
 ```
+FastQC report can be found  here **Results/FastQC/**. There was no need to subject reads to trimming.
+
 #### 2. *De novo* assembly (NS & NB)
-spades
+
 #### 3. Assembly statistics (NS & NB)
 quast
 
