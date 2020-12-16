@@ -99,7 +99,8 @@ mkdir ${working_dir}/concoct_output
 cut_up_fasta.py ${working_dir}/NB_spades/contigs.fasta -c 10000 -o 0 --merge_last -b ${working_dir}/concoct_output/contigs_10K.bed > ${working_dir}/concoct_output/contigs_10K.fa
 
 # create coverage table based on  data on contigs parts in BED format and sorted indexed alignment file of reads to contigs:
-concoct_coverage_table.py ${working_dir}/concoct_output/contigs_10K.bed ${working_dir}/NB3_reads_contigs.sorted.index.bam > ${working_dir}/concoct_output/coverage_table.tsv 
+concoct_coverage_table.py ${working_dir}/concoct_output/contigs_10K.bed \ 
+${working_dir}/NB3_reads_contigs.sorted.index.bam > ${working_dir}/concoct_output/coverage_table.tsv 
 
 # perform unsupervised binning of contigs
 concoct --composition_file ${working_dir}/concoct_output/contigs_10K.fa --coverage_file ${working_dir}/concoct_output/coverage_table.tsv -b ${working_dir}/concoct_output/
