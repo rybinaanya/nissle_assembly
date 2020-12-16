@@ -181,6 +181,50 @@ prokka \
 **?? Можно ли выкладывать аннотацию**
 
 ##### 5.2. PGAP
+Draft assembly was also annotated using PGAP. First, we need to prepare three input files: 
+* input.yaml
+```
+fasta: 
+    class: File
+    location: scaffolds.fasta
+submol:
+  class: File
+  location: submol.yaml
+```
+
+* submol.yaml
+```
+organism:
+    genus_species: 'Escherichia coli'
+    strain: 'Nissle 1917'
+```
+
+* scaffolds.fasta
+
+All three files should be put into the folder located in pgap directory:
+```{bash}
+# Enter the pgap folder git-cloned from official repository (https://github.com/ncbi/pgap):
+cd ${working_dir}/PGAP/pgap
+
+# Create here a folder where three input files would be placed:
+mkdir ${working_dir}/PGAP/pgap/Nissle 
+
+# Create input.yaml (see above):
+nano ${working_dir}/PGAP/pgap/Nissle/input.yaml
+
+# Create submol.yaml
+nano  ${working_dir}/PGAP/pgap/Nissle/submol.yaml
+
+# Copy draft assmebly to ${working_dir}/PGAP/pgap/Nissle/ directory:
+cp ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/PGAP/pgap/Nissle/
+```
+
+After that, if PGAP was installed correctrly, we could run the annotation. WE would save output in ${working_dir}/PGAP/Nissle_output directory, skip errors from control analysis to obtain draft annotation (--ignore-all-errors), without reporting to NCBI (-n) and self-updating (--no-self-update):
+
+```{bash}
+${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update -o ${working_dir}/PGAP/Nissle_output Nissle/input.yaml
+```
+
 #### 6. Taxonomy identification (NB) 
 ##### 6.1. 16S rRNA - как назвать ?
 ##### 6.2. Что-то про то как достали данные
