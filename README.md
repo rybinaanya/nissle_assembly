@@ -14,9 +14,10 @@ To ,,, we objectives:
 .... 
 ### Required programs used in the study and - check prokka and others - про комп
 In this study, the following programs were used:
-FastQC v0.11.9
-SPAdes v3.13.1
-QUAST v5.1.0rc1
+FastQC v0.11.9 \\
+SPAdes v3.13.1 \\
+QUAST v5.1.0rc1 \\
+CONCOCT v1.1.0 \\
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
@@ -67,6 +68,29 @@ quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffol
 
 #### 4. Contamination and completeness assessment (NS & NB)
 ##### 4.1. Binning
+Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. Bowtiew
+
+```{bash}
+ # mapping  - bowtie2
+
+mv contigs.fasta NB3spades_contigs.fasta
+path_out=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_spadesContig
+path_reads=/home/rybina/BIOFILMS/Genome_assembly/Nissle_data/2020_08_04/2020_08_04/Sk_student_AnnaRybina_for_summerschool
+
+bowtie2-build path_out/NB3spades_contigs.fasta path_out/NB3spades_contigs
+bowtie2 -x path_out/NB3spades_contigs -1 path_reads/ARyb_NB3_S54_R1_001.fastq.gz -2 path_reads/ARyb_NB3_S54_R2_001.fastq.gz -S path_out/NB3_spades_contig.sam
+# samtools  - sam to bam conversion
+
+samtools view -S NB3_spades_contig.sam -b -o NB3_spades_contig.bam
+
+# samtools sort
+samtools sort NB3_spades_contig.bam -o NB3_spades_contig.sorted.bam
+
+# samtools index
+samtools index NB3_spades_contig.sorted.bam 
+
+```
+
 ##### 4.2. CheckM - как назвать ?
 #### 5. Annotation (NS)
 ##### 5.1. Prokka
