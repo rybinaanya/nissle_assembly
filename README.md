@@ -79,10 +79,10 @@ bowtie2 -x ${working_dir}/NBspades_contigs -1 ${path_to_reads}/ARyb_NB3_S54_R1_0
 # Sam to bam conversion
 samtools view -S ${working_dir}/NB3_reads_contigs.sam -b -o ${working_dir}/NB3_reads_contigs.bam
 
-# Samtools sort
+# Sorting
 samtools sort ${working_dir}/NB3_reads_contigs.bam -o ${working_dir}/NB3_reads_contigs.sorted.bam
 
-# Samtools index
+# Indexing
 samtools index ${working_dir}/NB3_reads_contigs.sorted.bam
 ```
 
@@ -219,14 +219,53 @@ nano  ${working_dir}/PGAP/pgap/Nissle/submol.yaml
 cp ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/PGAP/pgap/Nissle/
 ```
 
-After that, if PGAP was installed correctrly, we could run the annotation. WE would save output in ${working_dir}/PGAP/Nissle_output directory, skip errors from control analysis to obtain draft annotation (--ignore-all-errors), without reporting to NCBI (-n) and self-updating (--no-self-update):
+After that, if PGAP was installed correctrly, we could run the annotation pipeline. We would save output in ${working_dir}/PGAP/Nissle_output directory, skip errors from control analysis to obtain draft annotation (--ignore-all-errors), without reporting to NCBI (-n) and self-updating (--no-self-update):
 
 ```{bash}
 ${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update -o ${working_dir}/PGAP/Nissle_output Nissle/input.yaml
 ```
 
 #### 6. Taxonomy identification (NB) 
-##### 6.1. 16S rRNA - как назвать ?
+##### 6.1. 16S rRNA gene homology search
+
+Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST**).
+
+We assumed that NB sample reads which failed to be mapped against the reference genome might belong to bacterial contaminant(s). We obtained draft assembly out of NB reads unmapped to the reference genome and extracted 16S rRNA gene. Its homologs were searched and classified in the SILVA database (https://www.arb-silva.de/aligner/ ) (**!!! LINK**). Minimum identity with query sequence was sset to 85, other parameters were default. The best hit with 100 % identity belonged to *Bacillus cereus* group.
+
+```{bash}
+# Indexing the reference genome (specifying Nissle2018 as prefix):
+bowtie2-build ${working_dir}/GCA_003546975.1_ASM354697v1_genomic.fna ${working_dir}/Nissle2018
+
+# Mapping:
+bowtie2 -x ${working_dir}/Nissle2018 -1 ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz -S ${working_dir}/NB_Nissle2018.sam
+
+# Sam to bam conversion:
+samtools view -b ${working_dir}/NB_Nissle2018.sam  > ${working_dir}/NB_Nissle2018.bam
+
+# Sorting:
+samtools sort ${working_dir}/NB_Nissle2018.bam -o ${working_dir}/NB_Nissle2018.sorted.bam
+
+# Indexing:
+samtools index ${working_dir}/NB_Nissle2018.sorted.bam 
+
+# Extracting unmapped reads:
+samtools view -b -F 2 ${working_dir}/NB_Nissle2018.sorted.bam > ${working_dir}/NB_Nissle2018.unmapped.bam
+
+# Sorting unmapped reads by name (required for bamToFastq v2.27.0):
+samtools sort -n ${working_dir}/NB_Nissle2018.unmapped.bam -o ${working_dir}/NB_Nissle2018.unmapped.sortedName.bam
+
+# Bam to fastq conversion:
+bamToFastq -i ${working_dir}/NB_Nissle2018.unmapped.sortedName.bam -fq ${working_dir}/NB_Nissle2018.unmappedR1.fastq -fq2 ${working_dir}/NB_Nissle2018.unmappedR2.fastq
+
+# Assembling unmapped reads:
+spades.py --careful -o ${working_dir}/NBunmapped_spades -1 ${working_dir}/NB_Nissle2018.unmappedR1.fastq -2 ${working_dir}/NB_Nissle2018.unmappedR2.fastq
+
+# Predicting rRNA genes:
+barrnap -o ${working_dir}/rrna_NBunmappedNissle2018.fa ${working_dir}/NBunmapped_spades/scaffolds.fasta
+
+# Extracting sequence(s) of 16S rRNA gene (print line matching the pattern "16S" and the next line):
+awk '/16S/{print;getline;print;}' ${working_dir}/rrna_NBunmappedNissle2018.fa > ${working_dir}/16Srrna_NBunmappedNissle2018.fa
+```
 ##### 6.2. Что-то про то как достали данные
 ##### 6.3. Kraken preparation
 ##### 6.4. Kraken running
