@@ -28,7 +28,7 @@ In this study, the following programs were used:
 * jellyfish (for running Kraken)
 
 ### Workflow
-#### 1. Quality assessment of raw sequencing data (NS & NB)
+#### 1. Quality assessment of raw sequencing data (NS & NB samples)
 
 Quality of reads was analyzed using FastQC v0.11.9 with default parameters. Variable ${working_dir} specifies the directory where all the output of data analysis would be saved (e.g. /home/rybina/Nissle_project). Variable ${path_to_reads} is the directory where raw reads in fastq format are located (e.g. /home/rybina/Nissle_project/Reads_data).  
 ```{bash}
@@ -48,7 +48,7 @@ spades.py --careful -o ${working_dir}/NB_spades -1 ${path_to_reads}/ARyb_NB3_S54
 spades.py --careful -o ${working_dir}/NS_spades -1 ${path_to_reads}/ARyb_NS2_S53_R1_001.fastq.gz -2 ${path_to_reads}/ARyb_NS2_S53_R2_001.fastq.gz 
 ```
 
-#### 3. Assembly statistics (NS & NB)
+#### 3. Assembly statistics (NS & NB samples)
 Statistics on resulting contigs and scaffolds for both samples was obtained using QUAST v5.1.0rc1. Each assembly was compared to complete genome of the *E. coli* Nissle 1917 available under GenBank assembly accession either GCA_003546975.1 (dated on 2018) or GCA_000714595.1 (dated on 2014).  Both QUAST output are located at **Results/QUAST/**
 
 ```{bash}
@@ -73,8 +73,8 @@ quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffol
 quast.py ${working_dir}/NS_spades/contigs.fasta ${working_dir}/NS_spades/scaffolds.fasta ${working_dir}/NB_spades/contigs.fasta ${working_dir}/NB_spades/scaffolds.fasta -r ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.fna -g ${working_dir}/GCA_000714595.1_ASM71459v1_genomic.gff -o ${working_dir}/quast_output_NS_NB_Nissle2014
 ```
 
-#### 4. Contamination and completeness assessment (NS & NB)
-##### 4.1. Binning
+#### 4. Contamination and completeness assessment (NB & NS samples)
+##### 4.1. Binning (NB sample)
 Binning was done using CONCOCT v1.1.0. For running CONCOCT, alignment of reads to the contigs should be provided. First, NB sample reads were mapped to the SPAdes-derived contigs via bowtie2 v2.2.1. Resulting alignment was modified using samtools 1.11. 
 ```{bash} 
 # Indexing contigs
@@ -119,7 +119,7 @@ mkdir ${working_dir}/concoct_output/NB_bins
 # Extract a fasta file for each cluster specified by concoct
 extract_fasta_bins.py ${working_dir}/NB_spades/contigs.fasta ${working_dir}/concoct_output/clustering_merged.csv --output_path ${working_dir}/concoct_output/NB_bins
 ```
-##### 4.2. Bins evaluation using single copy genes
+##### 4.2. Bins evaluation using single copy genes (NB & NS samples)
 NB sample bins were assessed for completeness and contamination using CheckM v1.1.3. 
 
 ```{bash}
@@ -155,7 +155,7 @@ cp ${working_dir}/NS_spades/contigs.fasta ${working_dir}/CheckM_output_NS/NS_bin
 checkm lineage_wf ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_output_NS
 ```
 Summary on bins evaluation might be found at **Results/CheckM/** for both samples. 
-#### 5. Annotation (NS)
+#### 5. Annotation (NS sample)
 ##### 5.1. Prokka
 
 First, prepare output directory and additional input file:
@@ -210,7 +210,7 @@ organism:
 
 All three files should be put into the folder located in pgap directory:
 ```{bash}
-# Enter the pgap folder git-cloned from official repository (https://github.com/ncbi/pgap):
+# Enter the pgap folder git-cloned from the official repository (https://github.com/ncbi/pgap):
 cd ${working_dir}/PGAP/pgap
 
 # Create here a folder where three input files would be placed:
@@ -232,7 +232,7 @@ After that, if PGAP was installed correctrly, we could run the annotation pipeli
 ${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update -o ${working_dir}/PGAP/Nissle_output Nissle/input.yaml
 ```
 
-#### 6 16S rRNA gene homology search (NB)
+#### 6. 16S rRNA gene homology search (NB sample)
 
 Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST**).
 
@@ -286,17 +286,39 @@ Download NCBI taxonomy files (the sequence ID to taxon map, the taxonomic names 
 ```{bash}
 kraken-build --download-taxonomy --db ${working_dir}/BacDB
 ```
-*Note:*  If you've got the error "rsync_from_ncbi.pl: unexpected FTP path (new server?) for na", this commands might help (https://github.com/DerrickWood/kraken2/issues/226):
+*Note:  If the error "rsync_from_ncbi.pl: unexpected FTP path (new server?) for na" error was thrown, the commands below might help to solve the problem (from https://github.com/DerrickWood/kraken2/issues/226):*
 ```{bash}
 awk -v FS='\t' '$20 != "na" {print $0}' ${working_dir}/BacDB/library/bacteria/assembly_summary.txt > ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt
 cp ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt ${working_dir}/BacDB/library/bacteria/assembly_summary.txt
 ```
 *After that, comment the line ```rm -f assembly_summary.txt```  within the scipt  ```download_genomic_library.sh```,  located at ```$(which download_genomic_library.sh)``` directory.*
 
-Install the library: download all the RefSeq bacterial genomes (about 86Gb size) to a folder ```library/bacteria/``` within your custom database directory. This task is the most computationally expensive. For instance, the following command was run on the computational node with 1Tb RAM during about 2 days:
+Finally, install the library: download all the RefSeq bacterial genomes (about 86Gb size) to a folder ```library/bacteria/``` within your custom database directory. This task is the most computationally expensive. For instance, the following command was run on the computational node with 1Tb RAM during about 2 days:
 ```{bash}
-kraken-build --build  --threads 24 --jellyfish-hash-size 4000000 --db BacDB
+kraken-build --build  --threads 24 --jellyfish-hash-size 4000000 --db ${working_dir}/BacDB
 ```
 
 ##### 7.2. Taxonomy assignation using customized database
-After constructing a custom databe, the command for taxonomic assignation of DNA reads agaisnt the custom database
+After constructing a custom database, the following commands for taxonomic assignation of DNA reads against the custome database could be run:
+```{bash}
+# If as an input we would provide scaffolds of NB reads that could not map against the reference genome (see step 6 above):
+kraken --db ${working_dir}/BacDB --threads 10 --unclassified-out ${working_dir}/unclassified_NBunmappedScaffolds  --classified-out ${path_out}/classified_NBunmappedScaffolds --output ${working_dir}/kraken_NBunmappedScaffolds_kraken.output --fasta-input ${working_dir}/NBunmapped_spades/scaffolds.fasta
+
+# If as input files we would specify raw reads of the NB sample:
+kraken --db ${path_db} --threads 24 --unclassified-out ${working_dir}/unclassified_NBreads --classified-out ${working_dir}/classified_NBreads --output ${working_dir}/kraken_NBreads.output  --paired  --fastq-input --gzip-compressed ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz
+```
+
+mkm | mmmkm |
+    |        |
+4632 sequences (7.20 Mbp) processed in 2825.719s (0.1 Kseq/m, 0.15 Mbp/m).
+  4625 sequences classified (99.85%)
+  7 sequences unclassified (0.15%)
+
+6791092 sequences (1039.04 Mbp) processed in 7064.555s (57.7 Kseq/m, 8.82 Mbp/m).
+  6743684 sequences classified (99.30%)
+  47408 sequences unclassified (0.70%)
+
+
+
+
+
