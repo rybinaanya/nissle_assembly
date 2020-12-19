@@ -18,7 +18,14 @@ In this study, the following programs were used:
 * SPAdes v3.13.1 
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
+* CheckM 
 * Bowtie2 v2.2.1
+* Samtools
+
+
+
+* Kraken
+* jellyfish (for running Kraken)
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB)
@@ -225,8 +232,7 @@ After that, if PGAP was installed correctrly, we could run the annotation pipeli
 ${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update -o ${working_dir}/PGAP/Nissle_output Nissle/input.yaml
 ```
 
-#### 6. Taxonomy identification (NB) 
-##### 6.1. 16S rRNA gene homology search
+#### 6 16S rRNA gene homology search (NB)
 
 Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST**).
 
@@ -266,8 +272,31 @@ barrnap -o ${working_dir}/rrna_NBunmappedNissle2018.fa ${working_dir}/NBunmapped
 # Extracting sequence(s) of 16S rRNA gene (print line matching the pattern "16S" and the next line):
 awk '/16S/{print;getline;print;}' ${working_dir}/rrna_NBunmappedNissle2018.fa > ${working_dir}/16Srrna_NBunmappedNissle2018.fa
 ```
-##### 6.2. Что-то про то как достали данные
-##### 6.3. Kraken preparation
-##### 6.4. Kraken running
-##### 6.5. Kraken report visualization
+#### 7. Taxonomy classification using Kraken (NB)
+Kraken v1.1.1 was used to identify taxonomy of the NB sample sequences (either initial raw reads or contigs obtained in previous step **6**  (```${working_dir}/NBunmapped_spades```)). HPC cluster should be probably used, as a kraken database preparation (```kraken-build --build ``` part) is a computationally intensive process.
 
+##### 7.1. Build a Kraken customized database 
+Before runing kraken, we should create custum database which would include only RefSeq complete bacterial genomes
+
+Create a folder with the name of a custom database that would be built (e.g., BacDB):
+```{bash}
+mkdir ${working_dir}/BacDB
+```
+Download NCBI taxonomy files (the sequence ID to taxon map, the taxonomic names and tree information). The command would create a folder ```taxonomy/``` within a custom database directory (e.g., ```${working_dir}/BacDB```): 
+```{bash}
+kraken-build --download-taxonomy --db ${working_dir}/BacDB
+```
+*Note:*  If you've got the error "rsync_from_ncbi.pl: unexpected FTP path (new server?) for na", this commands might help (https://github.com/DerrickWood/kraken2/issues/226):
+```{bash}
+awk -v FS='\t' '$20 != "na" {print $0}' ${working_dir}/BacDB/library/bacteria/assembly_summary.txt > ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt
+cp ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt ${working_dir}/BacDB/library/bacteria/assembly_summary.txt
+```
+*After that, comment the line ```rm -f assembly_summary.txt```  within the scipt  ```download_genomic_library.sh```,  located at ```$(which download_genomic_library.sh)``` directory.*
+
+Install the library: download all the RefSeq bacterial genomes (about 86Gb size) to a folder ```library/bacteria/``` within your custom database directory. This task is the most computationally expensive. For instance, the following command was run on the computational node with 1Tb RAM during about 2 days:
+```{bash}
+kraken-build --build  --threads 24 --jellyfish-hash-size 4000000 --db BacDB
+```
+
+##### 7.2. Taxonomy assignation using customized database
+After constructing a custom databe, the command for taxonomic assignation of DNA reads agaisnt the custom database
