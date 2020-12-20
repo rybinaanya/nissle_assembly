@@ -1,7 +1,7 @@
 ## Bacterial genome assembly and decontamination
 
 *Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020.
-**Results/** - contains results of read quality analysis (FastQC_report), assembly statistics (QUAST_report),  completeness and contamination assessment (CheckM_report), 
+ 
 ### Background 
 
 Our laboratory obtained sample of *Escherichia coli* str. Nissle 1917  which occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
