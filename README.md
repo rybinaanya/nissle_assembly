@@ -60,26 +60,23 @@ CheckM required:
 * dendropy >= 4.4.0
 
 For running Prokka, the following dependencies were used:
-Mandatory:
-* BioPerl
+* BioPerl (mandatory)
 >Stajich et al, The Bioperl toolkit: Perl modules for the life sciences. Genome Res. 2002 Oct;12(10):1611-8.
-* GNU Parallel 
+* GNU Parallel (mandatory)
 >O. Tange, GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, Feb 2011:42-47.
-* BLAST 2.9.0+ 
+* BLAST 2.9.0+ (mandatory)
 >Camacho C et al. BLAST+: architecture and applications. BMC Bioinformatics. 2009 Dec 15;10:421.
-* Prodigal V2.6.3
+* Prodigal V2.6.3 (mandatory)
 >Hyatt D et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics. 2010 Mar 8;11:119.
 * tbl2asn https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/ 
-
-Not mandatory:
-* ARAGORN v1.2.36
+* ARAGORN v1.2.36 (recommended)
 >Laslett D, Canback B. ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences. Nucleic Acids Res. 2004 Jan 2;32(1):11-6.
-* barrnap 0.9 
-* minced 0.4.2
+* barrnap 0.9 (recommended)
+* minced 0.4.2 (recommended)
 >https://github.com/ctSkennerton/minced
-* signalp-4.1
+* signalp-4.1 (recommended)
 >Petersen TN et al. SignalP 4.0: discriminating signal peptides from transmembrane regions. Nat Methods. 2011 Sep 29;8(10):785-6.
-* infernal-1.1.3
+* infernal-1.1.3 (recommended)
 >D. L. Kolbe, S. R. Eddy. Fast Filtering for RNA Homology Search. Bioinformatics, 27:3102-3109, 2011.
 
 For running PGAP pipeline we also needed:
