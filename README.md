@@ -16,27 +16,41 @@ Therefore, we set the following objectives
 ### Programs used in the study
 
 In this study, the following programs were used:
-* FastQC v0.11.9 
-* SPAdes v3.13.1 
+* FastQC v0.11.9 (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* SPAdes v3.13.1
+>Nurk S, Bankevich A, Antipov D, Gurevich AA, Korobeynikov A, Lapidus A, Prjibelski AD, Pyshkin A, Sirotkin A, Sirotkin Y, Stepanauskas R, Clingenpeel SR, Woyke T, McLean JS, Lasken R, Tesler G, Alekseyev MA, Pevzner PA. Assembling single-cell genomes and mini-metagenomes from chimeric MDA products. J Comput Biol. 2013 Oct;20(10):714-37. doi: 10.1089/cmb.2013.0084. 
 * QUAST v5.1.0rc1
+>Alexey Gurevich, Vladislav Saveliev, Nikolay Vyahhi and Glenn Tesler. QUAST: quality assessment tool for genome assemblies, Bioinformatics (2013) 29 (8): 1072-1075. doi: 10.1093/bioinformatics/btt086
 * CONCOCT v1.1.0
+>Johannes Alneberg, Brynjar Smári Bjarnason, Ino de Bruijn, Melanie Schirmer, Joshua Quick, Umer Z Ijaz, Leo Lahti, Nicholas J Loman, Anders F Andersson & Christopher Quince. 2014. Binning metagenomic contigs by coverage and composition. Nature Methods, doi: 10.1038/nmeth.3103
 * CheckM v1.1.3
 >Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055.
 * Bowtie2 v2.2.1
+>Langmead, B., Salzberg, S. Fast gapped-read alignment with Bowtie 2. Nat Methods 9, 357–359 (2012). doi: 10.1038/nmeth.1923
 * Samtools v1.11
+>Li H. A statistical framework for SNP calling, mutation discovery, association mapping and population genetical parameter estimation from sequencing data. Bioinformatics. 2011 Nov 1;27(21):2987-93. doi: 10.1093/bioinformatics/btr509. 
 * BEDtools v2.27.0
+>Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010 Mar 15;26(6):841-2. doi: 10.1093/bioinformatics/btq033.
 * Prokka v1.12
+>Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014 Jul 15;30(14):2068-9. PMID:24642063
 * PGAP:2020-09-24.build4894
+>Tatusova T, DiCuccio M, Badretdin A, Chetvernin V, Nawrocki EP, Zaslavsky L, Lomsadze A, Pruitt KD, Borodovsky M, Ostell J. NCBI prokaryotic genome annotation pipeline. Nucleic Acids Res. 2016 Aug 19;44(14):6614-24. doi: 10.1093/nar/gkw569.
 * Barrnap v0.9
+> Seemann T. Barrnap 0.9 : rapid ribosomal RNA prediction. https://github.com/tseemann/barrnap
 * Kraken v1.1.1
 >Wood DE, Salzberg SL: Kraken: ultrafast metagenomic sequence classification using exact alignments. Genome Biology 2014, 15:R46.
-* jellyfish  1.1.11 (for running Kraken)
+* jellyfish  1.1.11 (https://github.com/gmarcais/Jellyfish, for running Kraken)
 * Mauve v2.3.1
-* Python 3.7 (biopython)
+>Darling AC, Mau B, Blattner FR, Perna NT. Mauve: multiple alignment of conserved genomic sequence with rearrangements. Genome Res. 2004;14(7):1394-1403. doi: 10.1101/gr.2289704
+* Python 3.7
+* Biopython
+>Cock PA, Antao T, Chang JT, Chapman BA, Cox CJ, Dalke A, Friedberg I, Hamelryck T, Kauff F, Wilczynski B and de Hoon MJL (2009) Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics, 25, 1422-1423
 
 CheckM required:
 * HMMER (>=3.1b1)
+>Finn RD et al. HMMER web server: interactive sequence similarity searching. Nucleic Acids Res. 2011 Jul;39(Web Server issue):W29-37.
 * prodigal (2.60 or >=2.6.1)
+>Hyatt D et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics. 2010 Mar 8;11:119.
 * pplacer (>=1.1)
 * python >= 3.6
 * numpy >= 1.13.1
@@ -45,21 +59,37 @@ CheckM required:
 * pysam >= 0.12.0.1
 * dendropy >= 4.4.0
 
-For running Prokka, the following dependencies were employed: 
-* BLAST 2.9.0+
-* Prodigal V2.6.3 
-* tbl2asn
+For running Prokka, the following dependencies were used:
+Mandatory:
+* BioPerl
+>Stajich et al, The Bioperl toolkit: Perl modules for the life sciences. Genome Res. 2002 Oct;12(10):1611-8.
+* GNU Parallel 
+>O. Tange, GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, Feb 2011:42-47.
+* BLAST 2.9.0+ 
+>Camacho C et al. BLAST+: architecture and applications. BMC Bioinformatics. 2009 Dec 15;10:421.
+* Prodigal V2.6.3
+>Hyatt D et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics. 2010 Mar 8;11:119.
+* tbl2asn https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/ 
+
+Not mandatory:
 * ARAGORN v1.2.36
+>Laslett D, Canback B. ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences. Nucleic Acids Res. 2004 Jan 2;32(1):11-6.
 * barrnap 0.9 
 * minced 0.4.2
+>https://github.com/ctSkennerton/minced
 * signalp-4.1
+>Petersen TN et al. SignalP 4.0: discriminating signal peptides from transmembrane regions. Nat Methods. 2011 Sep 29;8(10):785-6.
 * infernal-1.1.3
-* perl v5.10.1
+>D. L. Kolbe, S. R. Eddy. Fast Filtering for RNA Homology Search. Bioinformatics, 27:3102-3109, 2011.
 
-PGAP 
+For running PGAP pipeline we also needed:
+* ability to run Docker (see https://docs.docker.com/install/) commands without sudo  
+* about 100GB of storage for database and working space,
+* 2GB-4GB of memory available per CPU used by container.
+* The CPU must have SSE 4.2 support (released in 2008).
 
+For running Kraken, HPC cluster should be used. 
 All programs were added to the system path. 
-
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB samples)
@@ -270,7 +300,7 @@ ${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update
 
 Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST_report**).
 
-We assumed that NB sample reads which failed to be mapped against the reference genome might belong to bacterial contaminant(s). We obtained draft assembly out of NB reads unmapped to the reference genome and extracted 16S rRNA gene. Its homologs were searched and classified in the SILVA database (https://www.arb-silva.de/aligner/ ) (**!!! LINK**). Minimum identity with query sequence was sset to 85, other parameters were default. The best hit with 100 % identity belonged to *Bacillus cereus* group.
+We assumed that NB sample reads which failed to be mapped against the reference genome might belong to bacterial contaminant(s). We obtained draft assembly out of NB reads unmapped to the reference genome and extracted 16S rRNA gene. Its homologs were searched and classified in the SILVA database (https://www.arb-silva.de/aligner/ ). Minimum identity with query sequence was sset to 85, other parameters were default. The best hit with 100 % identity belonged to *Bacillus cereus* group.
 
 ```{bash}
 # Indexing the reference genome (specifying Nissle2018 as prefix):
@@ -365,7 +395,7 @@ We compared draft assembly (annotated via pgap) with *E. coli*  str. K-12 substr
 cp ${working_dir}/PGAP/Nissle_output/annot.gbk  ${working_dir}/NS_pgap.gbk
 progressiveMauve --min-scaled-penalty=5000 --output= ${working_dir}/Mauve_minscaledpen5000 ${working_dir}/NS_pgap.gbk  ${working_dir}/GCA_000714595_full.gbk ${working_dir}/GCA_003546975_full.gbk ${working_dir}/GCA_000005845_full.gbk > ./Mauve_minscaledpen5000.log
 ```
-Manual inspecting the alignment, we determined location of 28 regions in the draft assembly that were not included into Locally Collinear Blocks (LCB). Respective coordinates were written down into the table and used for extracting sequences from draft assembly (see a piece of biopython code **below?**). Obtained sequences were subjected to online BLASTN search with default parameters.
+Manual inspecting the alignment, we determined location of 28 regions in the draft assembly that were not included into Locally Collinear Blocks (LCB). Respective coordinates were written down into the table and used for extracting sequences from draft assembly (see a piece of biopython code below). Obtained sequences were subjected to online BLASTN search with default parameters.
 ```{python}
 # python3.7
 
