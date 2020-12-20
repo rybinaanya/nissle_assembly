@@ -1,6 +1,6 @@
 ## Bacterial genome assembly and decontamination
 
-*Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020. **something about files located here**
+*Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020.
 **Results/** - contains results of read quality analysis (FastQC_report), assembly statistics (QUAST_report),  completeness and contamination assessment (CheckM_report), 
 ### Background 
 
@@ -11,7 +11,7 @@ In this work, we aimed to perform *de novo* assembly and determine taxonomy clas
 Therefore, we set the following objectives
 * perform *de novo* assembly of genome; 
 * identify taxonomy of bacterial contaminants;
-* annotate draft assembly
+* annotate draft assembly and compare with a reference genome.
 
 ### Programs used in the study
 
@@ -426,4 +426,10 @@ with open(working_dir+'/NS_regions_between_LCBs.fasta','w') as f_out:
 ```
 
 BLASTN results demonstrated that  all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
+
+### Conclusion
+
+Sample *Nissle Big*  is a metagenome that consists of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) and the species *Bacillus cereus*.
+
+From the sample *Nissle Small* we obtained  4,977,707 bp draft assembly which is 4,977,707 bp long and consists of 66 contigs with N50 value of 205,763. At 50.53 %, the GC content is similar to that of the *E. coli* Nissle 1917 genomes availabe at NCBI. PGAP annotation pipeline revealed 4,773 genes, among them 4,559 are protein-coding, three complete rRNAs (2 5S and 1 23S), 4 partial rRNAs (all 16S) and 58 tRNAs. Comparing NS sample and its assembly with the *E. coli* genomes demonstrated that the draft assembly covered the complete genome of *E. coli* str. Nissle 1917 (GenBank assembly accession: GCA_003546975.1) by 98% and more resembled *E. coli* str. Nissle 1917 genomes than *E. coli* str. K-12 substr. MG1655. These results suggest that studied small colonies are indeed belong to *E. coli*  str. Nissle 1917.     
 
