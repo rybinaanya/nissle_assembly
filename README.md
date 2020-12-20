@@ -22,7 +22,6 @@ In this study, the following programs were used:
 * CONCOCT v1.1.0
 * CheckM v1.1.3
 Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055.
-
 * Bowtie2 v2.2.1
 * Samtools v1.11
 * BEDtools v2.27.0
