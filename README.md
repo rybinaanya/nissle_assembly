@@ -21,7 +21,7 @@ In this study, the following programs were used:
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
 * CheckM v1.1.3
-Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055.
+>Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055.
 * Bowtie2 v2.2.1
 * Samtools v1.11
 * BEDtools v2.27.0
@@ -29,6 +29,7 @@ Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: asses
 * PGAP:2020-09-24.build4894
 * Barrnap v0.9
 * Kraken v1.1.1
+>Wood DE, Salzberg SL: Kraken: ultrafast metagenomic sequence classification using exact alignments. Genome Biology 2014, 15:R46.
 * jellyfish  1.1.11 (for running Kraken)
 * Mauve v2.3.1
 * Python 3.7 (biopython)
