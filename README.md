@@ -214,7 +214,7 @@ mkdir ${working_dir}/CheckM_output_NS/NS_bins
 cp ${working_dir}/NS_spades/contigs.fasta ${working_dir}/CheckM_output_NS/NS_bins
 
 # Run workflow using lineage-specific marker sets
-checkm lineage_wf ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_output_NS
+checkm lineage_wf -x fasta ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_output_NS
 ```
 Summary on bins evaluation might be found at **Results/CheckM_report/** for both samples. 
 
