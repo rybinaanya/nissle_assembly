@@ -272,6 +272,8 @@ barrnap -o ${working_dir}/rrna_NBunmappedNissle2018.fa ${working_dir}/NBunmapped
 # Extracting sequence(s) of 16S rRNA gene (print line matching the pattern "16S" and the next line):
 awk '/16S/{print;getline;print;}' ${working_dir}/rrna_NBunmappedNissle2018.fa > ${working_dir}/16Srrna_NBunmappedNissle2018.fa
 ```
+
+
 #### 7. Taxonomy classification using Kraken (NB)
 Kraken v1.1.1 was used to identify taxonomy of the NB sample sequences (either initial raw reads or contigs obtained in previous step **6**  (```${working_dir}/NBunmapped_spades```)). HPC cluster should be probably used, as a kraken database preparation (```kraken-build --build ``` part) is a computationally intensive process.
 
@@ -286,7 +288,7 @@ Download NCBI taxonomy files (the sequence ID to taxon map, the taxonomic names 
 ```{bash}
 kraken-build --download-taxonomy --db ${working_dir}/BacDB
 ```
-*Note:  If the error "rsync_from_ncbi.pl: unexpected FTP path (new server?) for na" error was thrown, the commands below might help to solve the problem (from https://github.com/DerrickWood/kraken2/issues/226):*
+*Note:  If the error "rsync_from_ncbi.pl: unexpected FTP path (new server?) for na"  was thrown, the commands below might solve the issue (from https://github.com/DerrickWood/kraken2/issues/226):*
 ```{bash}
 awk -v FS='\t' '$20 != "na" {print $0}' ${working_dir}/BacDB/library/bacteria/assembly_summary.txt > ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt
 cp ${working_dir}/BacDB/library/bacteria/new_assembly_summary.txt ${working_dir}/BacDB/library/bacteria/assembly_summary.txt
@@ -302,23 +304,22 @@ kraken-build --build  --threads 24 --jellyfish-hash-size 4000000 --db ${working_
 After constructing a custom database, the following commands for taxonomic assignation of DNA reads against the custome database could be run:
 ```{bash}
 # If as an input we would provide scaffolds of NB reads that could not map against the reference genome (see step 6 above):
-kraken --db ${working_dir}/BacDB --threads 10 --unclassified-out ${working_dir}/unclassified_NBunmappedScaffolds  --classified-out ${path_out}/classified_NBunmappedScaffolds --output ${working_dir}/kraken_NBunmappedScaffolds_kraken.output --fasta-input ${working_dir}/NBunmapped_spades/scaffolds.fasta
+kraken --db ${working_dir}/BacDB --threads 10 --unclassified-out ${working_dir}/unclassified_NBunmappedScaffolds  --classified-out ${path_out}/classified_NBunmappedScaffolds --output ${working_dir}/kraken_NBunmappedScaffolds.output --fasta-input ${working_dir}/NBunmapped_spades/scaffolds.fasta
 
 # If as input files we would specify raw reads of the NB sample:
 kraken --db ${path_db} --threads 24 --unclassified-out ${working_dir}/unclassified_NBreads --classified-out ${working_dir}/classified_NBreads --output ${working_dir}/kraken_NBreads.output  --paired  --fastq-input --gzip-compressed ${path_to_reads}/ARyb_NB3_S54_R1_001.fastq.gz ${path_to_reads}/ARyb_NB3_S54_R2_001.fastq.gz
 ```
 
-mkm | mmmkm |
-    |        |
-4632 sequences (7.20 Mbp) processed in 2825.719s (0.1 Kseq/m, 0.15 Mbp/m).
-  4625 sequences classified (99.85%)
-  7 sequences unclassified (0.15%)
+Out of 4632 scaffolds,  4625 sequences were classified (99.85%). Among 6791092 read sequences, 6743684 sequences were assigned taxonomy to (99.30%) while other sequences failed to be classified. The rest sequuences in both cases remained unclassified. 
 
-6791092 sequences (1039.04 Mbp) processed in 7064.555s (57.7 Kseq/m, 8.82 Mbp/m).
-  6743684 sequences classified (99.30%)
-  47408 sequences unclassified (0.70%)
+For displaying kraken results, kraken report could be used. To obtain report file,  run the command:
+```{bash}
+# in case of scaffolds 
+kraken-report --db ${working_dir}/BacDB ${working_dir}/kraken_NBunmappedScaffolds.output > ${working_dir}/kraken_NBunmappedScaffolds.report
 
-
-
+# in case of reads
+kraken-report --db ${working_dir}/BacDB ${working_dir}/kraken_NBreads.output > ${working_dir}/kraken_NBreads.report
+```
+Kraken report was visualized at the web server Pavian (https://fbreitwieser.shinyapps.io/pavian/). According to kraken reports, NB sample was metagenome that consisted of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) as well as the species *Bacillus cereus*. This outcome correspond to the result obtained via 16S rRNA gene homology search predicted 16S rRNA genes of possible contaminants were assigned to *Bacillus cereus* group and *E. coli* with identity varying from 99.8765 to 100%. 
 
 
