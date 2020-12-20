@@ -1,0 +1,14 @@
+Bin Id	Seq. Id	HMM	i-Evalue	Start hit	End hit	16S/18S gene length	Rev. Complement	Sequence length
+13	NODE_151_length_1496_cov_358.619709	bacteria	0	42	1487	1445	True	1496
+2	NODE_30_length_113405_cov_50.408937	bacteria	9.3e-21	5	149	144	True	113405
+unbinned	NODE_517_length_105_cov_2.120000	archaea	2.8e-18	1	105	104	True	105
+unbinned	NODE_397_length_111_cov_103.071429	bacteria	3.8e-13	1	110	109	False	111
+unbinned	NODE_525_length_101_cov_97.586957	archaea	6.4e-17	1	101	100	True	101
+unbinned	NODE_827_length_61_cov_1.666667	archaea	6.7e-09	1	61	60	True	61
+unbinned	NODE_349_length_122_cov_98.373134	bacteria	1e-13	1	117	116	False	122
+unbinned	NODE_811_length_62_cov_2.142857	bacteria	2.8e-15	1	62	61	False	62
+unbinned	NODE_815_length_61_cov_97.666667	bacteria	3.7e-13	1	61	60	True	61
+unbinned	NODE_256_length_200_cov_91.000000	archaea	2.8e-42	1	200	199	True	200
+unbinned	NODE_175_length_641_cov_89.846416	bacteria	2.9e-177	1	630	629	False	641
+unbinned	NODE_823_length_61_cov_4.166667	bacteria	2e-12	1	61	60	False	61
+unbinned	NODE_167_length_799_cov_89.513441	bacteria	4.7e-190	2	783	781	True	799

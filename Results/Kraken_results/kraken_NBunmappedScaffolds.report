@@ -1,0 +1,91 @@
+  0.15	7	7	U	0	unclassified
+ 99.85	4625	0	-	1	root
+ 99.85	4625	0	-	131567	  cellular organisms
+ 99.85	4625	26	D	2	    Bacteria
+ 93.39	4326	0	P	1224	      Proteobacteria
+ 93.37	4325	0	C	1236	        Gammaproteobacteria
+ 93.37	4325	19	O	91347	          Enterobacterales
+ 92.96	4306	1624	F	543	            Enterobacteriaceae
+ 57.41	2659	140	G	561	              Escherichia
+ 54.30	2515	2507	S	562	                Escherichia coli
+  0.02	1	0	-	83333	                  Escherichia coli K-12
+  0.02	1	1	-	879462	                    Escherichia coli str. K-12 substr. MG1655star
+  0.02	1	1	-	83334	                  Escherichia coli O157:H7
+  0.02	1	0	-	1603259	                  Escherichia coli O139:H28
+  0.02	1	1	-	331111	                    Escherichia coli O139:H28 str. E24377A
+  0.02	1	0	-	2233553	                  Escherichia coli O43
+  0.02	1	1	-	1055541	                    Escherichia coli O43 str. RM10042
+  0.02	1	1	-	2603836	                  Escherichia coli O10:H32
+  0.02	1	1	-	2773705	                  Escherichia coli O18ac:H14
+  0.02	1	1	-	2773707	                  Escherichia coli O19:H7
+  0.02	1	1	-	2778655	                  Escherichia coli O167:H26
+  0.02	1	0	S	564	                Escherichia fergusonii
+  0.02	1	1	-	981367	                  Escherichia fergusonii ECD227
+  0.02	1	1	S	208962	                Escherichia albertii
+  0.02	1	1	S	1499973	                Escherichia marmotae
+  0.02	1	0	-	2608889	                unclassified Escherichia
+  0.02	1	1	S	2044467	                  Escherichia sp. E4742
+  0.15	7	0	G	620	              Shigella
+  0.06	3	3	S	622	                Shigella dysenteriae
+  0.06	3	3	S	623	                Shigella flexneri
+  0.02	1	1	S	621	                Shigella boydii
+  0.11	5	2	G	547	              Enterobacter
+  0.04	2	0	-	2608935	                unclassified Enterobacter
+  0.02	1	1	S	1914861	                  Enterobacter sp. SA187
+  0.02	1	1	S	2742619	                  Enterobacter sp. RHB15-C17
+  0.02	1	1	-	354276	                Enterobacter cloacae complex
+  0.09	4	0	G	544	              Citrobacter
+  0.04	2	0	S	67825	                Citrobacter rodentium
+  0.04	2	2	-	637910	                  Citrobacter rodentium ICC168
+  0.04	2	0	-	2644389	                unclassified Citrobacter
+  0.02	1	1	S	1920110	                  Citrobacter sp. CFNIH10
+  0.02	1	1	S	2653932	                  Citrobacter sp. NMI7904_11
+  0.06	3	0	G	570	              Klebsiella
+  0.04	2	2	S	573	                Klebsiella pneumoniae
+  0.02	1	1	-	2608929	                unclassified Klebsiella
+  0.06	3	0	G	590	              Salmonella
+  0.06	3	1	S	28901	                Salmonella enterica
+  0.04	2	1	-	59201	                  Salmonella enterica subsp. enterica
+  0.02	1	1	-	119912	                    Salmonella enterica subsp. enterica serovar Choleraesuis
+  0.02	1	0	G	158483	              Cedecea
+  0.02	1	1	S	158823	                Cedecea lapagei
+  0.02	1	0	C	28211	        Alphaproteobacteria
+  0.02	1	0	O	356	          Rhizobiales
+  0.02	1	0	F	69277	            Phyllobacteriaceae
+  0.02	1	0	G	68287	              Mesorhizobium
+  0.02	1	0	-	325217	                unclassified Mesorhizobium
+  0.02	1	1	S	2493678	                  Mesorhizobium sp. M7D.F.Ca.US.005.01.1.1
+  5.89	273	5	-	1783272	      Terrabacteria group
+  5.79	268	2	P	1239	        Firmicutes
+  5.74	266	2	C	91061	          Bacilli
+  5.70	264	5	O	1385	            Bacillales
+  5.57	258	1	F	186817	              Bacillaceae
+  5.55	257	130	G	1386	                Bacillus
+  2.68	124	44	-	86661	                  Bacillus cereus group
+  1.36	63	8	S	1396	                    Bacillus cereus
+  0.58	27	27	-	526973	                      Bacillus cereus m1293
+  0.35	16	16	-	361100	                      Bacillus cereus Q1
+  0.04	2	2	-	222523	                      Bacillus cereus ATCC 10987
+  0.04	2	2	-	1217984	                      Bacillus cereus FRI-35
+  0.02	1	1	-	288681	                      Bacillus cereus E33L
+  0.02	1	1	-	347495	                      Bacillus cereus F837/76
+  0.02	1	1	-	526970	                      Bacillus cereus BGSC 6E1
+  0.02	1	1	-	526974	                      Bacillus cereus BDRD-ST24
+  0.02	1	1	-	526980	                      Bacillus cereus ATCC 10876
+  0.02	1	1	-	526982	                      Bacillus cereus Rock1-15
+  0.02	1	1	-	526992	                      Bacillus cereus AH1271
+  0.02	1	1	-	1126681	                      Bacillus cereus F
+  0.15	7	5	S	1428	                    Bacillus thuringiensis
+  0.02	1	1	-	527019	                      Bacillus thuringiensis IBL 200
+  0.02	1	1	-	1218175	                      Bacillus thuringiensis HD-771
+  0.13	6	6	S	2026186	                    Bacillus paranthracis
+  0.06	3	0	-	2750818	                    unclassified Bacillus cereus group
+  0.04	2	2	S	1892404	                      Bacillus sp. ABP14
+  0.02	1	1	S	2217830	                      Bacillus sp. SH8-8
+  0.02	1	1	S	2026188	                    Bacillus tropicus
+  0.04	2	2	-	653685	                  Bacillus subtilis group
+  0.02	1	0	-	185979	                  unclassified Bacillus
+  0.02	1	1	S	2529386	                    Bacillus sp. SYJ
+  0.02	1	0	F	90964	              Staphylococcaceae
+  0.02	1	0	G	1279	                Staphylococcus
+  0.02	1	1	S	29382	                  Staphylococcus cohnii

@@ -1,0 +1,14 @@
+Running pplacer v1.1.alpha19-0-g807f6f3 analysis on /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/storage/tree/concatenated.fasta...
+Didn't find any reference sequences in given alignment file. Using supplied reference alignment.
+Pre-masking sequences... sequence length cut from 6988 to 6740.
+Warning: pplacer results make the most sense when the given tree is multifurcating at the root. See manual for details.
+Determining figs... figs disabled.
+Allocating memory for internal nodes... done.
+Caching likelihood information on reference tree... done.
+Pulling exponents... done.
+Preparing the edges for baseball... done.
+error (Cannot allocate memory) when trying to fork
+couldn't fork any children; falling back to a single process.
+working on 2 (1/3)...
+working on 4 (2/3)...
+working on 3 (3/3)...

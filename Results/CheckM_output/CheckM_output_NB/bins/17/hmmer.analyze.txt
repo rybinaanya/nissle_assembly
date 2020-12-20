@@ -1,0 +1,24 @@
+#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+NODE_87_length_26952_cov_13.882663_10 -            127 KH_5                 PF13184.1     69   6.7e-05   17.4   0.8   1   1   3.3e-07   0.00012   16.6   0.8    19    67    61   109    55   112 0.88 # 12372 # 12752 # 1 # ID=3_10;partial=00;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.344
+NODE_62_length_53321_cov_23.931213_80 -            155 TOBE_2               PF08402.5     75    0.0009   14.0   0.0   1   1   7.4e-06    0.0027   12.5   0.0    18    54     4    41     2    52 0.84 # 42339 # 42803 # 1 # ID=1_80;partial=00;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.361
+NODE_60_length_55469_cov_13.808261_34 -            215 DNA_mis_repair       PF01119.14   119   0.00054   14.2   0.0   1   2   1.3e-05    0.0049   11.1   0.0    61   101    53    93    18   105 0.79 # 34725 # 35369 # -1 # ID=12_34;partial=00;start_type=ATG;rbs_motif=AGGA/GGAG/GAGG;rbs_spacer=11-12bp;gc_cont=0.375
+NODE_60_length_55469_cov_13.808261_34 -            215 DNA_mis_repair       PF01119.14   119   0.00054   14.2   0.0   2   2     0.021       7.7    0.8   0.0     9    38   176   210   165   214 0.73 # 34725 # 35369 # -1 # ID=12_34;partial=00;start_type=ATG;rbs_motif=AGGA/GGAG/GAGG;rbs_spacer=11-12bp;gc_cont=0.375
+NODE_86_length_27573_cov_15.118105_14 -            436 PGK                  PF00162.14   384   0.00027   14.3   0.1   1   1   1.4e-06   0.00053   13.3   0.1    98   156   170   225   154   237 0.80 # 15264 # 16571 # 1 # ID=13_14;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.345
+NODE_79_length_33263_cov_13.154210_11 -            199 Ribosomal_S11        PF00411.14   110    0.0012   13.8   0.0   1   1   4.8e-06    0.0018   13.2   0.0    48   104   137   193   121   196 0.80 # 12094 # 12690 # 1 # ID=6_11;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.353
+NODE_60_length_55469_cov_13.808261_18 -            703 TIGR00329            TIGR00329    305    0.0023   11.6   0.0   1   2     0.004       1.5    2.4   0.0   149   180   162   193   147   208 0.82 # 21995 # 24103 # -1 # ID=12_18;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.327
+NODE_60_length_55469_cov_13.808261_18 -            703 TIGR00329            TIGR00329    305    0.0023   11.6   0.0   2   2   0.00024     0.087    6.4   0.0   228   274   263   309   243   326 0.85 # 21995 # 24103 # -1 # ID=12_18;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.327
+NODE_80_length_32167_cov_14.925480_33 -            328 S1                   PF00575.18    74   0.00026   15.8   4.1   1   3      0.03        11    1.0   0.0    20    40    82   102    77   130 0.82 # 26436 # 27419 # -1 # ID=4_33;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.391
+NODE_80_length_32167_cov_14.925480_33 -            328 S1                   PF00575.18    74   0.00026   15.8   4.1   2   3   5.8e-05     0.021    9.7   0.4     5    68   156   218   152   221 0.89 # 26436 # 27419 # -1 # ID=4_33;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.391
+NODE_80_length_32167_cov_14.925480_33 -            328 S1                   PF00575.18    74   0.00026   15.8   4.1   3   3     0.003       1.1    4.2   0.4     6    27   244   266   240   269 0.88 # 26436 # 27419 # -1 # ID=4_33;partial=00;start_type=ATG;rbs_motif=AGGAGG;rbs_spacer=5-10bp;gc_cont=0.391
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      /tmp/f6e30217-eb3f-4fd5-832e-3998d23de48b
+# Target file:     /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/17/genes.faa
+# Option settings: hmmsearch --domtblout /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/17/hmmer.analyze.txt --noali --notextw -E 0.1 --domE 0.1 --cpu 1 /tmp/f6e30217-eb3f-4fd5-832e-3998d23de48b /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/17/genes.faa 
+# Current dir:     /mnt/lustre/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output
+# Date:            Tue Oct 20 16:18:25 2020
+# [ok]

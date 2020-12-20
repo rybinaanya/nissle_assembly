@@ -1,0 +1,10 @@
+organism: Escherichia coli Nissle 
+contigs: 1017
+bases: 10543938
+rRNA: 9
+gene: 10634
+sig_peptide: 681
+CDS: 10162
+misc_RNA: 369
+tRNA: 92
+tmRNA: 2

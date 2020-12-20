@@ -1,0 +1,4 @@
+##gff-version  3
+# Sequence Data: seqnum=1;seqlen=1227;seqhdr="NODE_158_length_1227_cov_96.527304"
+# Model Data: version=Prodigal.v2.6.3;run_type=Metagenomic;model="18|Desulfurococcus_kamchatkensis_1221n|B|45.3|11|1";gc_cont=45.30;transl_table=11;uses_sd=1
+NODE_158_length_1227_cov_96.527304	Prodigal_v2.6.3	CDS	749	1180	1.5	+	0	ID=1_1;partial=00;start_type=TTG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;gc_cont=0.493;conf=58.68;score=1.53;cscore=0.46;sscore=1.07;rscore=4.92;uscore=-3.31;tscore=-0.54;

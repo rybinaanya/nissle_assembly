@@ -1,0 +1,13 @@
+#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+#
+# Program:         hmmsearch
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      /tmp/aaf2c310-1838-490f-9f6d-40d3e23f9a28
+# Target file:     /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/16/genes.faa
+# Option settings: hmmsearch --domtblout /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/16/hmmer.analyze.txt --noali --notextw -E 0.1 --domE 0.1 --cpu 1 /tmp/aaf2c310-1838-490f-9f6d-40d3e23f9a28 /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/bins/16/genes.faa 
+# Current dir:     /mnt/lustre/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output
+# Date:            Tue Oct 20 16:18:23 2020
+# [ok]

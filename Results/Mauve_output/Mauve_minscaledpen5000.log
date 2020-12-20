@@ -1,0 +1,480 @@
+Storing raw sequence at /tmp/rawseq19743.000
+Sequence loaded successfully.
+/home/rybina/Nissle_project/NS_pgap.gbk 5014328 base pairs.
+Storing raw sequence at /tmp/rawseq19743.001
+Sequence loaded successfully.
+/home/rybina/Nissle_project/GCA_000005845_full.gbk 4641652 base pairs.
+Storing raw sequence at /tmp/rawseq19743.002
+Sequence loaded successfully.
+/home/rybina/Nissle_project/GCA_000714595_full.gbk 5441200 base pairs.
+Storing raw sequence at /tmp/rawseq19743.003
+Sequence loaded successfully.
+/home/rybina/Nissle_project/GCA_003546975_full.gbk 5055316 base pairs.
+Using weight 15 mers for initial seeds
+Creating sorted mer list
+Create time was: 1 seconds.
+Creating sorted mer list
+Create time was: 1 seconds.
+Creating sorted mer list
+Create time was: 1 seconds.
+Creating sorted mer list
+Create time was: 2 seconds.
+0%..1%..2%..3%..4%..5%..6%..7%..8%..9%..10%..
+11%..12%..13%..14%..15%..16%..17%..18%..19%..20%..
+21%..22%..23%..24%..25%..26%..27%..28%..29%..30%..
+31%..32%..33%..34%..35%..36%..37%..38%..39%..40%..
+41%..42%..43%..44%..45%..46%..47%..48%..49%..50%..
+51%..52%..53%..54%..55%..56%..57%..58%..59%..60%..
+61%..62%..63%..64%..65%..66%..67%..68%..69%..70%..
+71%..72%..73%..74%..75%..76%..77%..78%..79%..80%..
+81%..82%..83%..84%..85%..86%..87%..88%..89%..90%..
+91%..92%..93%..94%..95%..96%..97%..98%..99%..done.
+using default bp penalty: 155851
+using default bp estimate min score: 467554
+Starting with 61054 multi-matches
+Computing genome content distance matrix...
+
+
+Genome conservation distance matrix: 
+0	0.170076	0.0428703	0.0121144
+0.170076	0	0.214465	0.173758
+0.0428703	0.214465	0	0.0363919
+0.0121144	0.173758	0.0363919	0
+
+Writing guide tree to /tmp/guide_tree19743.000
+reading tree...
+initializing alignment tree...
+Constructing seed occurrence lists for repeat detection
+Calculating pairwise breakpoint distances
+Pair 0, 1 has 12206 initial LCBs
+Using scaled bp penalty: 221812
+Pair (0,1) has 26 well-supported breakpoints
+Pair 0, 2 has 212 initial LCBs
+Using scaled bp penalty: 392387
+Pair (0,2) has 40 well-supported breakpoints
+Pair 0, 3 has 219 initial LCBs
+Using scaled bp penalty: 445306
+Pair (0,3) has 37 well-supported breakpoints
+Pair 1, 2 has 11569 initial LCBs
+Using scaled bp penalty: 178030
+Pair (1,2) has 3 well-supported breakpoints
+Pair 1, 3 has 12095 initial LCBs
+Using scaled bp penalty: 217902
+Pair (1,3) has 2 well-supported breakpoints
+Pair 2, 3 has 48 initial LCBs
+Using scaled bp penalty: 403119
+Pair (2,3) has 12 well-supported breakpoints
+genome content distance matrix:
+0	0.170076	0.0428703	0.0121144
+0.170076	0	0.214465	0.173758
+0.0428703	0.214465	0	0.0363919
+0.0121144	0.173758	0.0363919	0
+
+bp distance matrix:
+0.9	0.312	0.48	0.444
+0.312	0.9	0.036	0.024
+0.48	0.036	0.9	0.144
+0.444	0.024	0.144	0.9
+
+Aligning...
+Aligning node 3 to 4 via 2!
+get ancestral matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 269 tracking matches
+There are 538 / 1883 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 50 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.0363919
+
+
+scaling bp penalty by bp weight: 
+0.144
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 98459.9
+2%..4%..6%..8%..
+10%..12%..14%..16%..18%..
+20%..22%..24%..26%..28%..
+30%..32%..34%..36%..38%..
+40%..42%..done
+Arrived at 19 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 51 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(3) has 1 intervals
+descendant 1(4) has 1 intervals
+propagateDescendantBreakpoints yields 19 intervals
+Creating ancestral ordering
+Previous anchoring score: -1.79769e+308, new anchor score: 3.91782e+08
+Backing up alignment tree...
+propagating ancestral breakpoints
+recursive anchor search
+0,0 have 23 new matches outside LCBs
+0,0 has an additional 274 matches
+Restoring backed up alignment tree...
+3,2 has 274 pairwise matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 369 tracking matches
+There are 738 / 2583 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 52 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.0363919
+
+
+scaling bp penalty by bp weight: 
+0.144
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 98459.9
+1%..3%..5%..7%..9%..
+11%..13%..15%..17%..19%..
+21%..23%..25%..26%..28%..
+30%..32%..34%..36%..38%..
+40%..done
+Arrived at 19 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 49 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(3) has 1 intervals
+descendant 1(4) has 1 intervals
+propagateDescendantBreakpoints yields 19 intervals
+Creating ancestral ordering
+Previous anchoring score: 3.91782e+08, new anchor score: 3.90702e+08
+propagating ancestral breakpoints
+performing a gapped alignment
+
+0%..1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..42%..43%..44%..45%..46%..47%..48%..49%..
+50%..51%..52%..53%..54%..55%..56%..57%..58%..59%..
+60%..61%..62%..63%..64%..65%..66%..67%..68%..69%..
+70%..71%..72%..73%..74%..75%..76%..77%..78%..79%..
+80%..81%..82%..83%..84%..85%..86%..87%..88%..89%..
+90%..91%..92%..93%..94%..95%..96%..97%..98%..99%..
+100%..Fix left ends
+
+done.
+Aligning node 2 to 6 via 1!
+get ancestral matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 376 tracking matches
+There are 1467 / 2632 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 389 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.0428703
+0.0121144
+
+
+scaling bp penalty by bp weight: 
+0.48
+0.444
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 35367.1
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..done
+Arrived at 45 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 132 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(2) has 19 intervals
+descendant 1(6) has 1 intervals
+propagateDescendantBreakpoints yields 62 intervals
+Creating ancestral ordering
+Previous anchoring score: -1.79769e+308, new anchor score: 5.70277e+08
+Backing up alignment tree...
+propagating ancestral breakpoints
+recursive anchor search
+0,0 have 235 new matches outside LCBs
+1,0 have 254 new matches outside LCBs
+0,0 has an additional 1938 matches
+1,0 has an additional 1901 matches
+Restoring backed up alignment tree...
+2,0 has 1938 pairwise matches
+3,0 has 1901 pairwise matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 630 tracking matches
+There are 2426 / 4410 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 579 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.0428703
+0.0121144
+
+
+scaling bp penalty by bp weight: 
+0.48
+0.444
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 35367.1
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..done
+Arrived at 58 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 156 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(2) has 19 intervals
+descendant 1(6) has 1 intervals
+propagateDescendantBreakpoints yields 74 intervals
+Creating ancestral ordering
+Previous anchoring score: 5.70277e+08, new anchor score: 8.04575e+08
+Backing up alignment tree...
+propagating ancestral breakpoints
+recursive anchor search
+0,0 have 212 new matches outside LCBs
+1,0 have 203 new matches outside LCBs
+0,0 has an additional 904 matches
+1,0 has an additional 1000 matches
+Restoring backed up alignment tree...
+2,0 has 904 pairwise matches
+3,0 has 1000 pairwise matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 828 tracking matches
+There are 3122 / 5796 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 827 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.0428703
+0.0121144
+
+
+scaling bp penalty by bp weight: 
+0.48
+0.444
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 35367.1
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..42%..43%..44%..45%..done
+Arrived at 62 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 167 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(2) has 19 intervals
+descendant 1(6) has 1 intervals
+propagateDescendantBreakpoints yields 78 intervals
+Creating ancestral ordering
+Previous anchoring score: 8.04575e+08, new anchor score: 8.0477e+08
+propagating ancestral breakpoints
+performing a gapped alignment
+
+0%..1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..42%..43%..44%..45%..46%..47%..48%..49%..
+50%..51%..52%..53%..54%..55%..56%..57%..58%..59%..
+60%..61%..62%..63%..64%..65%..66%..67%..68%..69%..
+70%..71%..72%..73%..74%..75%..76%..77%..78%..79%..
+80%..81%..82%..83%..84%..85%..86%..87%..88%..89%..
+90%..91%..92%..93%..94%..95%..96%..97%..98%..99%..
+100%..Fix left ends
+
+done.
+Aligning node 1 to 5 via 0!
+get ancestral matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 17855 tracking matches
+There are 106633 / 124985 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 45825 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.170076
+0.214465
+0.173758
+
+
+scaling bp penalty by bp weight: 
+0.312
+0.036
+0.024
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 34997.8
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..done
+Arrived at 35 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 106 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(1) has 74 intervals
+descendant 1(5) has 1 intervals
+propagateDescendantBreakpoints yields 108 intervals
+Creating ancestral ordering
+Previous anchoring score: -1.79769e+308, new anchor score: 2.55084e+08
+Backing up alignment tree...
+propagating ancestral breakpoints
+recursive anchor search
+0,0 have 518 new matches outside LCBs
+1,0 have 541 new matches outside LCBs
+2,0 have 495 new matches outside LCBs
+0,0 has an additional 7453 matches
+1,0 has an additional 7188 matches
+2,0 has an additional 7263 matches
+Restoring backed up alignment tree...
+0,1 has 7453 pairwise matches
+2,1 has 7188 pairwise matches
+3,1 has 7263 pairwise matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 13481 tracking matches
+There are 80307 / 94367 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 11724 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.170076
+0.214465
+0.173758
+
+
+scaling bp penalty by bp weight: 
+0.312
+0.036
+0.024
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 34997.8
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..done
+Arrived at 42 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 116 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(1) has 74 intervals
+descendant 1(5) has 1 intervals
+propagateDescendantBreakpoints yields 115 intervals
+Creating ancestral ordering
+Previous anchoring score: 2.55084e+08, new anchor score: 9.12234e+08
+Backing up alignment tree...
+propagating ancestral breakpoints
+recursive anchor search
+0,0 have 371 new matches outside LCBs
+1,0 have 393 new matches outside LCBs
+2,0 have 346 new matches outside LCBs
+0,0 has an additional 2764 matches
+1,0 has an additional 2868 matches
+2,0 has an additional 2702 matches
+Restoring backed up alignment tree...
+0,1 has 2764 pairwise matches
+2,1 has 2868 pairwise matches
+3,1 has 2702 pairwise matches
+Performing Sum-of-pairs Greedy Breakpoint Elimination
+construct LCB tracking matches
+There are 12897 tracking matches
+There are 76729 / 90279 components used
+init tracking match LCB tracking
+pairwise score tracking matches
+get pairwise LCBs
+there are 8807 pairwise LCBs
+scaling bp penalty by conservation weight:
+0.170076
+0.214465
+0.173758
+
+
+scaling bp penalty by bp weight: 
+0.312
+0.036
+0.024
+
+Greedy BPE
+Scoring with scaled breakpoint penalty: 34997.8
+1%..2%..3%..4%..5%..6%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..done
+Arrived at 50 intervals
+Adding unaligned intervals
+addUnalignedIntervals yields 133 intervals
+Merging unaligned intervals
+Marbling gaps
+Propagating descendant breakpoints
+descendant 0(1) has 74 intervals
+descendant 1(5) has 1 intervals
+propagateDescendantBreakpoints yields 123 intervals
+Creating ancestral ordering
+Previous anchoring score: 9.12234e+08, new anchor score: 9.11452e+08
+propagating ancestral breakpoints
+performing a gapped alignment
+
+0%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..42%..43%..44%..45%..46%..47%..48%..49%..
+50%..51%..52%..53%..54%..55%..56%..57%..58%..59%..
+60%..61%..62%..63%..64%..65%..66%..67%..68%..69%..
+70%..71%..72%..73%..74%..75%..76%..77%..78%..79%..
+80%..81%..82%..83%..84%..85%..86%..87%..88%..89%..
+90%..91%..92%..93%..94%..95%..96%..97%..98%..99%..
+100%..Fix left ends
+
+done.
+Performing final pass iterative refinement
+
+0%..7%..8%..9%..
+10%..11%..12%..13%..14%..15%..16%..17%..18%..19%..
+20%..21%..22%..23%..24%..25%..26%..27%..28%..29%..
+30%..31%..32%..33%..34%..35%..36%..37%..38%..39%..
+40%..41%..42%..43%..44%..45%..46%..47%..48%..49%..
+50%..51%..52%..53%..54%..55%..56%..57%..58%..59%..
+60%..61%..62%..63%..64%..65%..66%..67%..68%..69%..
+70%..71%..72%..73%..74%..75%..76%..77%..78%..79%..
+80%..81%..82%..83%..84%..85%..86%..87%..88%..89%..
+90%..91%..92%..93%..94%..95%..96%..97%..98%..99%..
+100%..Fix left ends
+
+done.
+root alignment has 115 superintervals
+root alignment length: 6224787
+Organisms have 50.6% GC

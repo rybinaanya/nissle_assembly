@@ -1,0 +1,12 @@
+[2020-10-21 15:05:40] INFO: CheckM v1.1.3
+[2020-10-21 15:05:40] INFO: checkm ssu_finder -x fa /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/bowtie2_NB3_spadesContig/NB3spades_contigs.fa /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/concoct_NB3_spadesContig/NB3_bins /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/
+[2020-10-21 15:05:40] INFO: [CheckM - ssu_finder] Identifying SSU (16S/18S) rRNAs in sequences.
+[2020-10-21 15:05:40] INFO: Determining bin assignment of sequences.
+[2020-10-21 15:05:40] INFO: Identifying SSU rRNAs on sequences.
+[2020-10-21 15:05:40] INFO: Identifying bacterial 16S.
+[2020-10-21 15:05:46] INFO: Identifying archaeal 16S.
+[2020-10-21 15:05:50] INFO: Identifying eukaryotic 18S.
+[2020-10-21 15:05:56] INFO: Identified 13 putative SSU genes.
+[2020-10-21 15:05:56] INFO: Summary of identified hits written to: /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu_summary.tsv
+[2020-10-21 15:05:56] INFO: SSU sequences written to: /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu.fna
+[2020-10-21 15:05:56] INFO: { Current stage: 0:00:16.082 || Total: 0:00:16.082 }

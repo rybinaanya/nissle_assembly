@@ -1,0 +1,39 @@
+[2020-12-15 01:32:33] INFO: CheckM v1.1.3
+[2020-12-15 01:32:33] INFO: checkm lineage_wf -x fasta /home/rybina/Nissle_project/CheckM_output_NS/NS_bins /home/rybina/Nissle_project/CheckM_output_NS
+[2020-12-15 01:32:33] INFO: [CheckM - tree] Placing bins in reference genome tree.
+[2020-12-15 01:32:34] INFO: Identifying marker genes in 1 bins with 1 threads:
+[2020-12-15 01:32:35] INFO: Saving HMM info to file.
+[2020-12-15 01:32:35] INFO: Calculating genome statistics for 1 bins with 1 threads:
+[2020-12-15 01:32:35] INFO: Extracting marker genes to align.
+[2020-12-15 01:32:35] INFO: Parsing HMM hits to marker genes:
+[2020-12-15 01:32:36] INFO: Extracting 43 HMMs with 1 threads:
+[2020-12-15 01:32:36] INFO: Aligning 43 marker genes with 1 threads:
+[2020-12-15 01:32:39] INFO: Reading marker alignment files.
+[2020-12-15 01:32:39] INFO: Concatenating alignments.
+[2020-12-15 01:32:39] INFO: Placing 1 bins into the genome tree with pplacer (be patient).
+[2020-12-15 01:38:05] INFO: { Current stage: 0:05:31.825 || Total: 0:05:31.825 }
+[2020-12-15 01:38:05] INFO: [CheckM - lineage_set] Inferring lineage-specific marker sets.
+[2020-12-15 01:38:05] INFO: Reading HMM info from file.
+[2020-12-15 01:38:05] INFO: Parsing HMM hits to marker genes:
+[2020-12-15 01:38:05] INFO: Determining marker sets for each genome bin.
+[2020-12-15 01:38:07] INFO: Marker set written to: /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NS2_output/checkm2/lineage.ms
+[2020-12-15 01:38:07] INFO: { Current stage: 0:00:01.865 || Total: 0:05:33.690 }
+[2020-12-15 01:38:07] INFO: [CheckM - analyze] Identifying marker genes in bins.
+[2020-12-15 01:38:07] INFO: Identifying marker genes in 1 bins with 1 threads:
+[2020-12-15 01:41:16] INFO: Saving HMM info to file.
+[2020-12-15 01:41:16] INFO: { Current stage: 0:03:09.111 || Total: 0:08:42.801 }
+[2020-12-15 01:41:16] INFO: Parsing HMM hits to marker genes:
+[2020-12-15 01:41:17] INFO: Aligning marker genes with multiple hits in a single bin:
+[2020-12-15 01:41:17] INFO: { Current stage: 0:00:01.242 || Total: 0:08:44.044 }
+[2020-12-15 01:41:17] INFO: Calculating genome statistics for 1 bins with 1 threads:
+[2020-12-15 01:41:18] INFO: { Current stage: 0:00:00.296 || Total: 0:08:44.340 }
+[2020-12-15 01:41:18] INFO: [CheckM - qa] Tabulating genome statistics.
+[2020-12-15 01:41:18] INFO: Calculating AAI between multi-copy marker genes.
+[2020-12-15 01:41:18] INFO: Reading HMM info from file.
+[2020-12-15 01:41:18] INFO: Parsing HMM hits to marker genes:
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Bin Id               Marker lineage           # genomes   # markers   # marker sets   0    1     2   3   4   5+   Completeness   Contamination   Strain heterogeneity  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  scaffolds   f__Enterobacteriaceae (UID5124)      134         1173          336        2   1168   3   0   0   0       99.67            0.12               0.00          
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[2020-12-15 01:41:19] INFO: { Current stage: 0:00:01.080 || Total: 0:08:45.421 }

@@ -1,0 +1,114 @@
+# nhmmer :: search a DNA model, alignment, or sequence against a DNA database
+# HMMER 3.3 (Nov 2019); http://hmmer.org/
+# Copyright (C) 2019 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query file:                      /home/rybina/BIOFILMS/Genome_assembly/hmms_ssu/SSU_bacteria.hmm
+# target sequence database:        -
+# output directed to file:         /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu.bacteria.txt
+# hits tabular output:             /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu.bacteria.table.txt
+# show alignments in output:       no
+# sequence reporting threshold:    E-value <= 1e-05
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       bacteria  [M=1523]
+Scores for complete hits:
+    E-value  score  bias  Sequence                             start    end  Description
+    ------- ------ -----  --------                             -----  -----  -----------
+          0 1280.2  27.5  NODE_151_length_1496_cov_358.619709   1487     42 
+   4.7e-190  634.0  17.1  NODE_167_length_799_cov_89.513441      783      2 
+   2.9e-177  591.6   5.2  NODE_175_length_641_cov_89.846416        1    630 
+    3.4e-57  194.0   4.1  NODE_256_length_200_cov_91.000000      200      1 
+      4e-26   91.1   3.4  NODE_517_length_105_cov_2.120000       105      1 
+      3e-25   88.1   2.4  NODE_525_length_101_cov_97.586957      101      1 
+    9.3e-21   73.3   2.6  NODE_30_length_113405_cov_50.408937    149      5 
+    2.8e-15   55.1   1.6  NODE_811_length_62_cov_2.142857          1     62 
+      1e-13   50.0   3.6  NODE_349_length_122_cov_98.373134        1    117 
+    3.7e-13   48.1   1.3  NODE_815_length_61_cov_97.666667        61      1 
+    3.8e-13   48.1   3.6  NODE_397_length_111_cov_103.071429       1    110 
+    9.1e-13   46.8   2.5  NODE_827_length_61_cov_1.666667         61      1 
+      2e-12   45.7   2.1  NODE_823_length_61_cov_4.166667          1     61 
+
+
+Annotation for each hit :
+>> NODE_151_length_1496_cov_358.619709  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ ! 1280.2  27.5         0       113      1514 ..      1487        42 ..      1495        32 ..      1496    0.97
+
+>> NODE_167_length_799_cov_89.513441  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !  634.0  17.1  4.7e-190        31       744 ..       783         2 ..       797         1 ..       799    0.92
+
+>> NODE_175_length_641_cov_89.846416  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !  591.6   5.2  2.9e-177       888      1515 ..         1       630 [.         1       638 [.       641    0.97
+
+>> NODE_256_length_200_cov_91.000000  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !  194.0   4.1   3.4e-57       747       942 ..       200         1 ..       200         1 ..       200    0.96
+
+>> NODE_517_length_105_cov_2.120000  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   91.1   3.4     4e-26       692       795 ..       105         1 ..       105         1 ..       105    0.98
+
+>> NODE_525_length_101_cov_97.586957  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   88.1   2.4     3e-25       692       791 ..       101         1 ..       101         1 ..       101    0.98
+
+>> NODE_30_length_113405_cov_50.408937  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   73.3   2.6   9.3e-21        30       155 ..       149         5 ..       170         1 ..    113405    0.79
+
+>> NODE_811_length_62_cov_2.142857  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   55.1   1.6   2.8e-15       881       942 ..         1        62 []         1        62 []        62    0.98
+
+>> NODE_349_length_122_cov_98.373134  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   50.0   3.6     1e-13        57       154 ..         1       117 [.         1       122 []       122    0.82
+
+>> NODE_815_length_61_cov_97.666667  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   48.1   1.3   3.7e-13       741       801 ..        61         1 ..        61         1 ..        61    0.97
+
+>> NODE_397_length_111_cov_103.071429  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   48.1   3.6   3.8e-13        54       143 ..         1       110 [.         1       111 []       111    0.83
+
+>> NODE_827_length_61_cov_1.666667  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   46.8   2.5   9.1e-13       741       801 ..        61         1 ..        61         1 ..        61    0.97
+
+>> NODE_823_length_61_cov_4.166667  
+    score  bias    Evalue   hmmfrom    hmm to     alifrom    ali to      envfrom    env to       sq len      acc
+   ------ ----- ---------   -------   -------    --------- ---------    --------- ---------    ---------    ----
+ !   45.7   2.1     2e-12       741       801 ..         1        61 []         1        61 []        61    0.96
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (1523 nodes)
+Target sequences:                       1054  (21081464 residues searched)
+Residues passing SSV filter:          340115  (0.0161); expected (0.02)
+Residues passing bias filter:         340115  (0.0161); expected (0.02)
+Residues passing Vit filter:           26515  (0.00126); expected (0.003)
+Residues passing Fwd filter:            4572  (0.000217); expected (3e-05)
+Total number of hits:                     13  (0.000184)
+# CPU time: 4.64u 0.01s 00:00:04.64 Elapsed: 00:00:04.61
+# Mc/sec: 6962.33
+//
+[ok]

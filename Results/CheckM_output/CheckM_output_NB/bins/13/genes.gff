@@ -1,0 +1,8 @@
+##gff-version  3
+# Sequence Data: seqnum=1;seqlen=3109;seqhdr="NODE_137_length_3109_cov_331.752128"
+# Model Data: version=Prodigal.v2.6.3;run_type=Metagenomic;model="4|Akkermansia_muciniphila_ATCC_BAA_835|B|55.8|11|0";gc_cont=55.80;transl_table=11;uses_sd=0
+NODE_137_length_3109_cov_331.752128	Prodigal_v2.6.3	CDS	346	477	4.2	-	0	ID=1_1;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.561;conf=72.62;score=4.24;cscore=2.67;sscore=1.58;rscore=0.79;uscore=-1.06;tscore=1.85;
+# Sequence Data: seqnum=2;seqlen=1496;seqhdr="NODE_151_length_1496_cov_358.619709"
+# Model Data: version=Prodigal.v2.6.3;run_type=Metagenomic;model="30|Mycobacterium_leprae_TN|B|57.8|11|1";gc_cont=57.80;transl_table=11;uses_sd=1
+NODE_151_length_1496_cov_358.619709	Prodigal_v2.6.3	CDS	145	423	6.2	-	0	ID=2_1;partial=00;start_type=GTG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.534;conf=77.97;score=5.50;cscore=-5.86;sscore=11.36;rscore=14.19;uscore=-1.16;tscore=-0.51;
+NODE_151_length_1496_cov_358.619709	Prodigal_v2.6.3	CDS	722	865	2.9	-	0	ID=2_2;partial=00;start_type=GTG;rbs_motif=GGAGG;rbs_spacer=5-10bp;gc_cont=0.597;conf=65.95;score=2.88;cscore=-1.42;sscore=4.29;rscore=6.05;uscore=-0.35;tscore=-0.91;

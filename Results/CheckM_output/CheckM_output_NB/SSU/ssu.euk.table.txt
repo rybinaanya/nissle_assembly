@@ -1,0 +1,18 @@
+# target name                       accession  query name           accession  hmmfrom hmm to alifrom  ali to envfrom  env to  sq len strand   E-value  score  bias  description of target
+#               ------------------- ---------- -------------------- ---------- ------- ------- ------- ------- ------- ------- ------- ------ --------- ------ ----- ---------------------
+NODE_151_length_1496_cov_358.619709 -          silva.eukarya        -              858    1639     920     165     935     138    1496    -     1.5e-81  272.2  13.7  -
+NODE_175_length_641_cov_89.846416   -          silva.eukarya        -             1121    1628       1     494       1     516     641    +     1.9e-56  189.0   2.9  -
+NODE_256_length_200_cov_91.000000   -          silva.eukarya        -              965    1175     199       2     200       1     200    -     3.9e-25   85.3   3.8  -
+NODE_167_length_799_cov_89.513441   -          silva.eukarya        -               22     620     732     179     752     158     799    -     2.8e-11   39.4   7.7  -
+NODE_517_length_105_cov_2.120000    -          silva.eukarya        -              911    1012     102       1     105       1     105    -     7.4e-08   28.0   3.4  -
+NODE_525_length_101_cov_97.586957   -          silva.eukarya        -              911    1008      98       1     101       1     101    -     2.7e-06   22.9   2.3  -
+#
+# Program:         nhmmer
+# Version:         3.3 (Nov 2019)
+# Pipeline mode:   SEARCH
+# Query file:      /home/rybina/BIOFILMS/Genome_assembly/hmms_ssu/SSU_euk.hmm
+# Target file:     -
+# Option settings: nhmmer -o /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu.euk.txt --tblout /home/rybina/BIOFILMS/Genome_assembly/Nissle_data/NB3_output/checkm_NB3_spadesContig4/SSU/ssu.euk.table.txt --noali -E 1e-05 --cpu 1 /home/rybina/BIOFILMS/Genome_assembly/hmms_ssu/SSU_euk.hmm - 
+# Current dir:     /mnt/lustre/rybina
+# Date:            Wed Oct 21 15:05:55 2020
+# [ok]
