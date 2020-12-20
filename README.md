@@ -4,11 +4,11 @@
  
 ### Background 
 
-Our laboratory obtained sample of *Escherichia coli* str. Nissle 1917  which occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
+Our laboratory obtained the sample of *Escherichia coli* str. Nissle 1917 which occurred to be contaminated. Two types of colonies morphologically distinct by size were produced: small and big. We assumed that the first (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while the second ("Nissle Big", or "NB") consisted of *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
 
-In this work, we aimed to perform *de novo* assembly and determine taxonomy classification of contaminants for two sequencing samples obtained from the *E. coli* str. Nissle 1917 colonies. 
+In our work, we aimed to perform *de novo* assembly and determine taxonomy classification of contaminants for two sequencing samples obtained from the *E. coli* str. Nissle 1917 colonies. 
 
-Therefore, we set the following objectives
+Therefore, we set the following objectives:
 * perform *de novo* assembly of genome; 
 * identify taxonomy of bacterial contaminants;
 * annotate draft assembly and compare with a reference genome.
@@ -422,11 +422,11 @@ with open(working_dir+'/NS_regions_between_LCBs.fasta','w') as f_out:
             f_out.write(f">start_{start}_end_{end}\n{record.seq[start:end]}\n")
 ```
 
-BLASTN results demonstrated that  all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
+BLASTN results demonstrated that all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
 
 ### Conclusion
 
-Sample *Nissle Big*  is a metagenome that consists of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) and the species *Bacillus cereus*.
+Sample *Nissle Big* is a metagenome that consists of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) and the species *Bacillus cereus*.
 
 From the sample *Nissle Small* we obtained  4,977,707 bp draft assembly which is 4,977,707 bp long and consists of 66 contigs with N50 value of 205,763. At 50.53 %, the GC content is similar to that of the *E. coli* Nissle 1917 genomes available at NCBI. PGAP annotation pipeline revealed 4,773 genes, among them 4,559 are protein-coding, three complete rRNAs (2 5S and 1 23S), 4 partial rRNAs (all 16S) and 58 tRNAs. Comparing NS sample and its assembly with the *E. coli* genomes demonstrated that the draft assembly covered the complete genome of *E. coli* str. Nissle 1917 (GenBank assembly accession: GCA_003546975.1) by 98% and more resembled *E. coli* str. Nissle 1917 genomes than *E. coli* str. K-12 substr. MG1655. These results suggest that the studied small colonies are indeed belong to *E. coli*  str. Nissle 1917.     
 
