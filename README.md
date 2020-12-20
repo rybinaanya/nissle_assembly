@@ -84,6 +84,7 @@ For running PGAP pipeline we also needed:
 * about 100GB of storage for database and working space,
 * 2GB-4GB of memory available per CPU used by container.
 * The CPU must have SSE 4.2 support (released in 2008).
+* cwltool instaled (see https://github.com/common-workflow-language/cwltool)
 
 For running Kraken, HPC cluster should be used. 
 All programs were added to the system path. 
@@ -245,7 +246,7 @@ prokka \
 --usegenus \ 
 --rfam \ 
 --gram neg \ 
---proteins ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff.gz ${working_dir}/NS_spades/scaffolds.fasta
+--proteins ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff ${working_dir}/NS_spades/scaffolds.fasta
 ```
 
 ##### 5.2. PGAP
