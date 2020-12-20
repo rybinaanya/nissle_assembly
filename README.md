@@ -226,7 +226,7 @@ First, prepare output directory and additional input file:
 # Create a directory for prokka output:
 mkdir ${working_dir}/prokka_output_NS
 
-# Download and decompress last modified curated annotation of *E. coli* Nissle 1917
+# Download and decompress last modified curated annotation of E. coli Nissle 1917
 wget -P ${working_dir}/ https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/546/975/GCF_003546975.1_ASM354697v1/GCF_003546975.1_ASM354697v1_genomic.gbff.gz
 gunzip ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff.gz
 ```
