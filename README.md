@@ -3,12 +3,13 @@
 *Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020. **something about files located here**
 **Results/** - contains results of FastQC analysis, assembly statistics (QUAST output),  completeness and contamination assessment (CheckM report), 
 ### Background 
-Maintaining balanced gut microbiota was shown to be crucial for human health. Probiotics such as *Escgerichia coli* Nissle 1917 could recover beneficial functions in gut microbial communities and prevent it from being populated with pathogenic bacteria. **LINK!!** 
+Maintaining balanced gut microbiota was shown to be crucial for human health. Probiotics such as *Escherichia coli* Nissle 1917 could recover beneficial functions in gut microbial communities and prevent it from being populated with pathogenic bacteria. **LINK!!** 
 
-*Escherichia coli* str. Nissle 1917 is one of common probiotics used for maintaining balanced gut microbiota. **LINK!!** Sample of this probiotic obtained by our laboratory at drugstore occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
+*Escherichia coli* str. Nissle 1917 is one of common probiotics used for maintaining balanced gut microbiota. **LINK!!** 
 
-**about NCBI - there are 2 complete assembly but they differ**
-In this work, we aimed to perform decontamination and *de novo* assembly of two sequencing samples obtained from the pharmaceutical *E. coli* str. Nissle 1917. 
+Sample of *Escherichia coli* str. Nissle 1917 obtained by our laboratory occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
+
+In this work, we aimed to perform *de novo* assembly and determine taxonomy classification of contaminants for two sequencing samples obtained from the *E. coli* str. Nissle 1917 colonies. 
 
 To ,,, we objectives:
 .... 
@@ -26,6 +27,8 @@ In this study, the following programs were used:
 
 * Kraken
 * jellyfish (for running Kraken)
+* Mauve
+* Biopython
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB samples)
@@ -274,7 +277,7 @@ awk '/16S/{print;getline;print;}' ${working_dir}/rrna_NBunmappedNissle2018.fa > 
 ```
 
 
-#### 7. Taxonomy classification using Kraken (NB)
+#### 7. Taxonomy classification using Kraken (NB sample)
 Kraken v1.1.1 was used to identify taxonomy of the NB sample sequences (either initial raw reads or contigs obtained in previous step **6**  (```${working_dir}/NBunmapped_spades```)). HPC cluster should be probably used, as a kraken database preparation (```kraken-build --build ``` part) is a computationally intensive process.
 
 ##### 7.1. Build a Kraken customized database 
@@ -320,6 +323,46 @@ kraken-report --db ${working_dir}/BacDB ${working_dir}/kraken_NBunmappedScaffold
 # in case of reads
 kraken-report --db ${working_dir}/BacDB ${working_dir}/kraken_NBreads.output > ${working_dir}/kraken_NBreads.report
 ```
-Kraken report was visualized at the web server Pavian (https://fbreitwieser.shinyapps.io/pavian/). According to kraken reports, NB sample was metagenome that consisted of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) as well as the species *Bacillus cereus*. This outcome correspond to the result obtained via 16S rRNA gene homology search predicted 16S rRNA genes of possible contaminants were assigned to *Bacillus cereus* group and *E. coli* with identity varying from 99.8765 to 100%. 
+Kraken report was visualized at the web server Pavian (https://fbreitwieser.shinyapps.io/pavian/). According to kraken reports, NB sample was metagenome that consisted of bacteria from the species *E. coli* (including *E. coli* str. Nissle 1917) as well as the species *Bacillus cereus*. This outcome corresponded to the result obtained via 16S rRNA gene homology search: predicted 16S rRNA genes of possible contaminants were assigned to *Bacillus cereus* group and *E. coli* with identity varying from 99.88 to 100%. 
 
+
+#### 8. Genome-wide comparison (NS sample)
+
+We compared draft assembly (annotated via pgap) with *E. coli*  str. K-12 substr. MG1655 (GenBank assembly accesion GCA_000005845) and two complete genomes of *E. coli* str. Nissle 1917 (GenBank assembly accesion GCA_000714595 and GCA_003546975). Files in GBK format were manually retrieved from NCBI and renamed specifying the assembly accession. To download GBK file, go to nucleotide database where complete genome is placed (e.g. https://www.ncbi.nlm.nih.gov/nuccore/U00096.3), then click the button "Send to", and choose "Complete Record", "File" and format "GenBank(full)". For aligning genomes, Mauve (```progressiveMauve```) was used setting a minimum scaled breakpoint penalty to 5000:  
+```{bash}
+# copy annotation to the working direcotry:
+cp ${working_dir}/PGAP/Nissle_output/annot.gbk  ${working_dir}/NS_pgap.gbk
+progressiveMauve --min-scaled-penalty=5000 --output= ${working_dir}/Mauve_minscaledpen5000 ${working_dir}/NS_pgap.gbk  ${working_dir}/GCA_000714595_full.gbk ${working_dir}/GCA_003546975_full.gbk ${working_dir}/GCA_000005845_full.gbk > ./Mauve_minscaledpen5000.log
+```
+Manual inspecting the alignment, we determined location of 28 regions in the draft assembly that were not included into Locally Collinear Blocks (LCB). Respective coordinates were written down into the table and used for extracting sequences from draft assembly (see a piece of biopython code **below?**). Obtained sequences were subjected to online BLASTN search with default parameters.
+```{python}
+# python3.7
+
+import pandas as pd
+import numpy as np
+from Bio import SeqIO
+
+# specify working direcotry
+working_dir = /home/rybina/Nissle_project/
+
+# import table where coordinates of regions between LCBs are specified. Table contains 2 columns named 'start' and 'end'
+df = pd.read_csv(working_dir+'NS_regions_between_LCBs.csv', sep = ',')
+
+# join scaffolds into a single sequence 
+with open(working_dir + '/PGAP/Nissle_output/annot_merged.fna','w') as f:
+    seq=''
+    for record in SeqIO.parse(working_dir + '/PGAP/Nissle_output/annot.fna', 'fasta'):
+        seq+=str(record.seq)
+    f.write(f">NS_draft_assembly\n{seq}")
+    
+# Extract  respective sequences from the draft assembly
+with open(working_dir+'/NS_regions_between_LCBs.fasta','w') as f_out:
+    for i in range(len(df)):
+        start=df['start'][i]
+        end=df['end'][i]
+        for record in SeqIO.parse(working_dir + '/PGAP/Nissle_output/annot_merged.fna'):
+            f_out.write(f">start_{start}_end_{end}\n{record.seq[start:end]}\n")
+```
+
+BLASTN results demonstrated that  **almost ????????** all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
 
