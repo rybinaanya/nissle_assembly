@@ -13,22 +13,53 @@ Therefore, we set the following objectives
 * identify taxonomy of bacterial contaminants;
 * annotate draft assembly
 
-### Required programs used in the study and - check prokka and others - про комп
+### Programs used in the study
+
 In this study, the following programs were used:
 * FastQC v0.11.9 
 * SPAdes v3.13.1 
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
 * CheckM v1.1.3
+Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW. 2015. CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055.
+
 * Bowtie2 v2.2.1
 * Samtools v1.11
 * BEDtools v2.27.0
 * Prokka v1.12
 * PGAP:2020-09-24.build4894
+* Barrnap v0.9
 * Kraken v1.1.1
 * jellyfish  1.1.11 (for running Kraken)
 * Mauve v2.3.1
-* Biopython package (python 3.7)
+* Python 3.7 (biopython)
+
+CheckM required:
+* HMMER (>=3.1b1)
+* prodigal (2.60 or >=2.6.1)
+* pplacer (>=1.1)
+* python >= 3.6
+* numpy >= 1.13.1
+* scipy >= 0.19.1
+* matplotlib >= 2.1.0
+* pysam >= 0.12.0.1
+* dendropy >= 4.4.0
+
+For running Prokka, the following dependencies were employed: 
+* BLAST 2.9.0+
+* Prodigal V2.6.3 
+* tbl2asn
+* ARAGORN v1.2.36
+* barrnap 0.9 
+* minced 0.4.2
+* signalp-4.1
+* infernal-1.1.3
+* perl v5.10.1
+
+PGAP 
+
+All programs were added to the system path. 
+
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB samples)
