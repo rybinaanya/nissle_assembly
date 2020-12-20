@@ -1,34 +1,34 @@
 ## Bacterial genome assembly and decontamination
 
 *Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020. **something about files located here**
-**Results/** - contains results of FastQC analysis, assembly statistics (QUAST output),  completeness and contamination assessment (CheckM report), 
+**Results/** - contains results of read quality analysis (FastQC_report), assembly statistics (QUAST_report),  completeness and contamination assessment (CheckM_report), 
 ### Background 
-Maintaining balanced gut microbiota was shown to be crucial for human health. Probiotics such as *Escherichia coli* Nissle 1917 could recover beneficial functions in gut microbial communities and prevent it from being populated with pathogenic bacteria. **LINK!!** 
 
-*Escherichia coli* str. Nissle 1917 is one of common probiotics used for maintaining balanced gut microbiota. **LINK!!** 
-
-Sample of *Escherichia coli* str. Nissle 1917 obtained by our laboratory occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
+Our laboratory obtained sample of *Escherichia coli* str. Nissle 1917  which occured to be contaminated. Sample inoculation led to producing two morphologically distinct types of colonies: of small and big size. We assumed that small colonies (referred further as "Nissle Small", or simply "NS") were formed only by *E. coli* str. Nissle 1917, while big ones ("Nissle Big", or "NB") consisted of both *E. coli* str. Nissle 1917 and some other bacterial contaminants. Both colonies were subjected to NextSeq sequencing in paired-end mode with the read length of 75 nt, generating two sequencing samples: NB and NS. 
 
 In this work, we aimed to perform *de novo* assembly and determine taxonomy classification of contaminants for two sequencing samples obtained from the *E. coli* str. Nissle 1917 colonies. 
 
-To ,,, we objectives:
-.... 
+Therefore, we set the following objectives
+* perform *de novo* assembly of genome; 
+* identify taxonomy of bacterial contaminants;
+* annotate draft assembly
+
 ### Required programs used in the study and - check prokka and others - про комп
 In this study, the following programs were used:
-* FastQC v0.11.9
+* FastQC v0.11.9 
 * SPAdes v3.13.1 
 * QUAST v5.1.0rc1
 * CONCOCT v1.1.0
-* CheckM 
+* CheckM v1.1.3
 * Bowtie2 v2.2.1
-* Samtools
-
-
-
-* Kraken
-* jellyfish (for running Kraken)
-* Mauve
-* Biopython
+* Samtools v1.11
+* BEDtools v2.27.0
+* Prokka v1.12
+* PGAP:2020-09-24.build4894
+* Kraken v1.1.1
+* jellyfish  1.1.11 (for running Kraken)
+* Mauve v2.3.1
+* Biopython package (python 3.7)
 
 ### Workflow
 #### 1. Quality assessment of raw sequencing data (NS & NB samples)
@@ -157,7 +157,8 @@ cp ${working_dir}/NS_spades/contigs.fasta ${working_dir}/CheckM_output_NS/NS_bin
 # Run workflow using lineage-specific marker sets
 checkm lineage_wf ${working_dir}/CheckM_output_NS/NS_bins ${working_dir}/CheckM_output_NS
 ```
-Summary on bins evaluation might be found at **Results/CheckM/** for both samples. 
+Summary on bins evaluation might be found at **Results/CheckM_report/** for both samples. 
+
 #### 5. Annotation (NS sample)
 ##### 5.1. Prokka
 
@@ -188,7 +189,6 @@ prokka \
 --gram neg \ 
 --proteins ${working_dir}/GCF_003546975.1_ASM354697v1_genomic.gbff.gz ${working_dir}/NS_spades/scaffolds.fasta
 ```
-**?? Можно ли выкладывать аннотацию**
 
 ##### 5.2. PGAP
 Draft assembly was also annotated using PGAP. First, we need to prepare three input files: 
@@ -237,7 +237,7 @@ ${working_dir}/PGAP/pgap/scripts/pgap.py --ignore-all-errors -n --no-self-update
 
 #### 6. 16S rRNA gene homology search (NB sample)
 
-Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST**).
+Comparing *E. coli* str. Nissle 1917 (GenBank accession number GCA_003546975.1) with NS sample assembly via QUAST (see above) showed an average number of mismatches per 100 kbp aligned bases in assembly equal to 0.78 while assembly alignment to another *E. coli* str. Nissle 1917 genome (GenBank accession number GCA_000714595.1) yielded value of 2.06. Thus, *E. coli* str. Nissle 1917 genome GCA_003546975.1 was chosen as a reference genome for a subsequent analysis (See **Results/QUAST_report**).
 
 We assumed that NB sample reads which failed to be mapped against the reference genome might belong to bacterial contaminant(s). We obtained draft assembly out of NB reads unmapped to the reference genome and extracted 16S rRNA gene. Its homologs were searched and classified in the SILVA database (https://www.arb-silva.de/aligner/ ) (**!!! LINK**). Minimum identity with query sequence was sset to 85, other parameters were default. The best hit with 100 % identity belonged to *Bacillus cereus* group.
 
@@ -364,5 +364,5 @@ with open(working_dir+'/NS_regions_between_LCBs.fasta','w') as f_out:
             f_out.write(f">start_{start}_end_{end}\n{record.seq[start:end]}\n")
 ```
 
-BLASTN results demonstrated that  **almost ????????** all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
+BLASTN results demonstrated that  all those regions varying by length from 1000 to 10000 bp shared 100% similarity with *E. coli* str. Nissle 1917 (GenBank assembly accession GCA_003546975).
 
