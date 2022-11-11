@@ -1,6 +1,5 @@
 ## Bacterial genome assembly and decontamination
 
-*Note*: This repository describes my project performed at Bioinformatics Institute during the fall term - 2020.
  
 ### Background 
 
